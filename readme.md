@@ -8,6 +8,7 @@
    python -m venv .venv
    source .venv/bin/activate
    ```
+   **Important:** Make sure that your .venv is **not** located inside your repo folder! Otherwise the build won't work. 
 
 2. Install required packages 
    
