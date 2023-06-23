@@ -1,0 +1,27 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Getting started
+  maxdepth: 0
+  chapters:
+  - file: getting_started/what
+    title: What is it?
+  - file: getting_started/why
+    title: Why use it?
+  - file: getting_started/how
+    title: How to use it?
+  - file: getting_started/ecosystem
+    title: How to integrate it?
+- caption: Use cases
+  chapters:
+  - file: usecases/health_access
+  - file: usecases/green_routing
+- caption: Research
+  chapters:
+  - file: research/centrality
+- caption: Workshop content
+  chapters:
+  - file: workshop/workshop
