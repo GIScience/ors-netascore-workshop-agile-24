@@ -3,9 +3,18 @@
 ## Installation 
 
 1. Create a new python environment. 
-2. Install required packages 
 
-    `conda install -c conda-forge jupyter-book ghp-import`
+   ```
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
+
+2. Install required packages 
+   
+   ```
+   pip install jupyter-book ghp-import
+   ```
+
 
 
 ## How to build and deploy
