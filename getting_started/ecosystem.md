@@ -73,7 +73,20 @@ routes = directions(client, coords) # Now it shows you all arguments for .direct
 
 GitHub: [https://github.com/GIScience/openrouteservice-r](https://github.com/GIScience/openrouteservice-r)
 
-ADD CODE SNIPPET?
+```r
+install.packages("devtools")
+devtools::install_github("GIScience/openrouteservice-r")
+
+your_api_key <- "YOUR_API_KEY"
+
+origin <- c(6.943241, 50.334265)
+destination <- c(7.119166, 50.548979)
+
+normal_route <- ors_directions(list(origin,destination), api_key = your_api_key)
+```
+
+Conveniently supports geospatial classes in R like `sf`, `sp`, via the parameter `output=c("sf","sp","txt")`.
+
 
 ## JavaScript 
 
