@@ -5,7 +5,7 @@
 1. Create a new python environment. 
 2. Install required packages 
 
-    `conda install -c conda-forge jupyterbook ghp-import`
+    `conda install -c conda-forge jupyter-book ghp-import`
 
 
 ## How to build and deploy
