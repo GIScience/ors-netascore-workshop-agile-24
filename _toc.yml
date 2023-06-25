@@ -22,5 +22,9 @@ parts:
   - file: usecases/green_routing
   - file: research/centrality
 - caption: Workshop content
+   - file: workshop/qgis
+   - file: research/r
+   - file: research/docker
+
   chapters:
   - file: workshop/workshop
