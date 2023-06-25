@@ -3,17 +3,21 @@
 There are many great routing engines, here is a brief comparison.  
 
 |                            | openrouteservice | GraphHopper  | OSRM | Valhalla |
-|----------------------------|------------------|--------------|------|----------| 
-| Routing                    | ✔                | ✔            | ✔    | ✔        |
-| Matrix                     | ✔                | ✔            | ✔    | ✔        |
-| Isochrones                 | ✔                | ✔            |      | ✔        |
-| Traveling Salesman Problem | ✔                | ✔            | ✔    | ✔        |
-| Vehicle Routing Problem    | ✔ ?              | ✔            |      | ?        |
-| Map Matching               | ✔                | ✔            | ✔    | ✔        |
+|----------------------------|-----------------|--------------|------|---------| 
+| Routing                    | ✔               | ✔            | ✔    | ✔       |
+| Matrix                     | ✔               | ✔            | ✔    | ✔       |
+| Isochrones                 | ✔               | ✔            |      | ✔       |
+| Traveling Salesman Problem | ✔               | ✔            | ✔    | ✔       |
+| Vehicle Routing Problem    | ✔               | ✔            |      | ✔         |
+| Map Matching               | ✔               | ✔            | ✔    | ✔       |
+
+[comment]: # (|||)
 
 ```{note}
-This table only contains services related to navigation. Additinal services may be offered by the projects.
+This table only contains services related to navigation. Additional services are offered by the projects.
 ```
+
+[comment]: # (|||)
 
 ### Routing profiles 
 
@@ -38,21 +42,17 @@ The routing engines offer different routing profiles by default. Additinal ones 
 | Bus                 |                  |             |     | ✔                              |
 | Multimodal          |                  |             |     | ✔ (public transp. + pedestrian) |
 
+[comment]: # (|||)
 
 
-### Additional features 
+### Self hosting vs APIs 
 
-
-|                   | openrouteservice | GraphHopper | OSRM | Valhalla |
-|-------------------|------------------|-------------|------|----------|
-| Turn restrictions | ✔ ?              | ✔           | ✔    | ✔        |
-| Avoid polygons    | ✔                | ✔           |      | (✔) [1]  |
-| Long distances    | ✔                | ?           | ?    | ?        |
-
-What other categories would make sense? 
+|                         | openrouteservice | GraphHopper   | OSRM | Valhalla |
+|-------------------------|------------------|---------------|------|----------|
+| Self-hosting            | ✔                | ✔             | ✔    | ✔        |
+| Public API              | free             | free and paid |      |          |
+| Web Client - Routing    | ✔                | demo          |      | demo     |
+| Web Client - Isochrones | ✔                |               |      |          |
 
 
 [1] [With workaround: https://github.com/valhalla/valhalla/issues/1496](https://github.com/valhalla/valhalla/issues/1496) 
-
-
-

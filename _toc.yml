@@ -7,13 +7,13 @@ parts:
 - caption: Getting started
   maxdepth: 0
   chapters:
-  - file: getting_started/what
+  - file: getting_started/01_what
     title: What is it?
-  - file: getting_started/why
+  - file: getting_started/02_why
     title: Why use it?
-  - file: getting_started/how
+  - file: getting_started/03_how
     title: How to use it?
-  - file: getting_started/ecosystem
+  - file: getting_started/04_ecosystem
     title: How to integrate it?
 - caption: Use cases
   chapters:

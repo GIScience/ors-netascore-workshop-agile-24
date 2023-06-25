@@ -1,7 +1,8 @@
 # The openrouteservice ecosystem
 
-There is a large **ecosystem of clients** which supports you to easily use and integrate openrouteservice into your project!
+[comment]: # (|||)
 
+There is a large **ecosystem of clients** which supports you to easily use and integrate openrouteservice into your project!
 
 |                                         | Web Client | QGIS | Python | R   | JavaScript |
 |-----------------------------------------|------------|------|--------|-----|------------|
@@ -10,23 +11,31 @@ There is a large **ecosystem of clients** which supports you to easily use and i
 | Supports all ORS functions              |            |      | ✔      | ✔   | ✔          |
 | Automatise bulk requests                |            | ✔    | ✔      | ✔   | ✔          |
 
+[comment]: # (|||)
+
 ```{admonition} What if I need help?
 :class: tip
 If you have **questions or problems**, you will fine help in the [openrouteservice forum](https://ask.openrouteservice.org/). If you encounter **bugs**, feel free to create an issue in the respective [GitHub repository](https://github.com/giscience).
 ```
+
+[comment]: # (|||)
+
 
 ## Web Client
 
 Available at [https://maps.openrouteservice.org](https://maps.openrouteservice.org)  
 GitHub: [https://github.com/giscience/ors-map-client](https://github.com/giscience/ors-map-client)
 
-
 - Mobile friendly 
 - Uses public ORS API
 - Multi-language support
 - **Functions:** directions, geocoding, isochrones and Points-Of-Interest search.
 
+[comment]: # (|||)
+
 <img src="../img/clients.png" height="300px"></img>
+
+[comment]: # (|||)
 
 ## QGIS
 
@@ -40,8 +49,11 @@ GitHub: [https://github.com/GIScience/orstools-qgis-plugin](https://github.com/G
 - Enables processing in batch mode 
 - Does not support all ORS endpoints and parameters
 
+[comment]: # (|||)
+
 <img src="../img/qgis_plugin.png" height="300px"></img>
 
+[comment]: # (|||)
 
 ## Python
 
@@ -50,11 +62,15 @@ GitHub: [https://github.com/GIScience/openrouteservice-py](https://github.com/GI
 - Response as Python objects
 - Independent of API version
 
+[comment]: # (|||)
+
 **Installation** 
 
 ```
 pip install openrouteservice
 ```
+
+[comment]: # (|||)
 
 **Calculate route**
 
@@ -68,6 +84,7 @@ client = openrouteservice.Client(key='') # Specify your personal API key
 routes = directions(client, coords) # Now it shows you all arguments for .directions
 ```
 
+[comment]: # (|||)
 
 ## R 
 
@@ -87,6 +104,7 @@ normal_route <- ors_directions(list(origin,destination), api_key = your_api_key)
 
 Conveniently supports geospatial classes in R like `sf`, `sp`, via the parameter `output=c("sf","sp","txt")`.
 
+[comment]: # (|||)
 
 ## JavaScript 
 
@@ -95,9 +113,13 @@ GitHub: [https://github.com/GIScience/openrouteservice-js](https://github.com/GI
 - Allows the integration of the openrouteservice API in your application 
 - openrouteservice API validation 
 
+[comment]: # (|||)
+
 **Installation** 
 
 `npm install openrouteservice-js --save`
+
+[comment]: # (|||)
 
 **Usage**
 
