@@ -1,7 +1,17 @@
 # Accessibility to healthcare
 
+Using GIS isochrones methods, healthcare facilities catchment areas can be assessed to determine accessibility and service coverage. By analyzing spatial data and travel times, isochrones help identify the population that can reasonably access these facilities, aiding in planning and resource allocation for improved healthcare access. This approach can supports policymakers and healthcare administrators in optimizing facility placement and addressing underserved areas.
 
-Open Healthcare Access Map 
+At HeiGIT we created a global visualization of healthcare accessibility based on OpenStreetMap facilities and openrouteservice Isochrones.
+
+* Isochrone based accessibility towards healthcare facilities
+* Differentiated by facility type
+  - primary care
+  - secondary care
+* Globally available 
+* Different scale per countries:
+  - Admin 1, 2
+  - Hexagons (ISEA3H level 8)
 
 [https://apps.heigit.org/healthcare_access/#/](https://apps.heigit.org/healthcare_access/#/)
 
@@ -14,14 +24,7 @@ Example Kosovo
 ![healthcare_access_map_example](../img/healthcare_access_map_example.png)
 
 
-* Isochrone based accessibility towards healthcare facilities
-* Differentiated by facility type
-  - primary care
-  - secondary care
-* Globally available 
-* Different scale per countries:
-  - Admin 1, 2
-  - Hexagons (ISEA3H level 8)
+
 
 
 
