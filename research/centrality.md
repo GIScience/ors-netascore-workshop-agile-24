@@ -1,17 +1,15 @@
-# Network centrality
+# Network analysis - centrality
 
-Feature branch to export graph including its weights.
+In the context of road routing, network centrality refers to the assessment of the significance and influence of specific road segments or intersections within a transportation network. 
+It helps identify key routes or nodes that play a crucial role in connecting different locations, optimizing traffic flow, and enhancing overall accessibility and efficiency of the road network.
+Openrouteservice supports the analysis of network centrality via an export endpoint. Users can obtain a weighted, directed graph representation of the OpenStreetMap road network. Options on the route type: fastest, shortest and routing profile are available to choose from. The exported graph can be used in other environments or tools to conduct further analysis, like centrality measures etc.
+
 
 Usage in other software
-* QGIS
+* QGIS `Network Analysis`
 * R with `sfnetworks`
 * Python `NetworkX`
 
-
-
-
-
-https://sm2t.heigit.org/
 
 References:
 
