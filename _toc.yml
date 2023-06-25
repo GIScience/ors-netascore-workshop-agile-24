@@ -15,12 +15,11 @@ parts:
     title: How to use it?
   - file: getting_started/04_ecosystem
     title: How to integrate it?
-- caption: Use cases
+- caption: Use cases and research
   chapters:
   - file: usecases/health_access
+  - file: usecases/disaster_portal
   - file: usecases/green_routing
-- caption: Research
-  chapters:
   - file: research/centrality
 - caption: Workshop content
   chapters:
