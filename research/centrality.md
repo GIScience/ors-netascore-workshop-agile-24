@@ -1,4 +1,4 @@
-# Network analysis - centrality
+# Network analysis - Centrality
 
 In the context of road routing, network centrality refers to the assessment of the significance and influence of specific road segments or intersections within a transportation network. 
 It helps identify key routes or nodes that play a crucial role in connecting different locations, optimizing traffic flow, and enhancing overall accessibility and efficiency of the road network.
