@@ -34,7 +34,7 @@ In the [openrouteservice documentation](https://giscience.github.io/openrouteser
 
 `````{admonition} See also
 :class: tip
-No matter whether which option you choose, take a look at [The openrouteservice Ecosystem](./ecosystem.md) to learn how to send queries to the openrouteservice API in the easiest way for you. 
+No matter whether which option you choose, take a look at [the openrouteservice Ecosystem](./04_ecosystem.md) to learn how to send queries to the openrouteservice API in the easiest way for you. 
 `````
 
 
