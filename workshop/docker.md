@@ -96,6 +96,10 @@ You can now use all available clients of openrouteservice. You only have to chan
 * **R**: Set the endpoint with: `options(openrouteservice.url = "http://localhost:8080/ors")`
 * **Python**: Set the endpoint with: `client = openrouteservice.Client(base_url='http://localhost/ors')`
 * **JS**: Set the endpoint with: `let orsDirections = new Openrouteservice.Directions({ host: "http://localhost:8082/ors" }`
+* **Web client**: Open the [ORS web client](https://maps.openrouteservice.org). Open the settings using the button located at the top right of the side menu. Open the 'Advanced' tab and in section 'Service endpoints (URI or full URL)' replace the field 'Directions' with your local one: `http://localhost:8080/ors/v2/directions`. Click 'save' and you are good to go!
+
+    <img src="../img/local_ors_webclient.png" height="300px"></img>
+
 * **classic-webclient**: Access the classic-webclient [here](https://classic-maps.openrouteservice.org/directions?n1=49.413207&n2=8.701944&n3=13&b=0&c=0&k1=en-US&k2=km). Click on the small gear button located at the top right of the left navigation bar. Again click on the very light grey gear symbol on the bottom left(hard to see, just try to hit it somewere there). Developer Options appear. Change the BaseUrl to your local one: `http://localhost:8080/ors/v2/`. Click on change Endpoints. You are good to go!
 
 You can save this config to cookies to make the change persistent when you leave the website and come back later, otherwise it will be resetted to the requests against the public API. Just tick the box next to the Change Endpoints button.
