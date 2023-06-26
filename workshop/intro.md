@@ -1,10 +1,20 @@
-# Introduction 
+# Introduction hands-on 
 
-In times of disaster, such as the devastating flood event that occurred in the Ahr valley in Germany in July 2021, **routing becomes crucial for emergency responders, humanitarian organizations, and disaster management teams** to distribute help quickly and efficiently. Openrouteservice, an open-source routing engine built on OpenStreetMap data, offers a **powerful** and **flexible** solution for **navigation** and **logistics** **planning** in such scenarios.
+**tl;dr:**
+
+* What is this about: Learn to use openrouteservice with a disaster scenario.
+* Scenario: Flooding in the Ahr Valley region caused significant damage to roads and bridges, rendering them unusable.
+* Objective: Learn how to utilize openrouteservice services, such as directions, isochrones, and optimization, to address challenges in reaching affected communities from the nearby emergency disaster relief staging area at the Nürburg Ring racing arena.
+* Incorporating Damaged Infrastructure: The training will cover incorporating information about damaged infrastructure as obstacles in the routing process.
 
 <img src="../img/ahrtal_flood.png" height="300px">
 
-The coordinates provided in the code chunk point to the ***Nürburgring*, a motorsports complex in rural Rhineland-Palatinate, which served as staging area during the emergency response.** In this area, rescue helpers from all over Germany were stationed to sleep, eat and repair their equipment inbetween deployments. The destination coordinates point to ***Bad Neuenahr-Ahrweiler***, the largest community affected by the flood in Rhineland-Palatinate.
+The training addresses the use of openrouteservice in a disaster scenario, particularly the 2021 Ahr Valley floods. Participants gain the knowledge to navigate damaged infrastructure and optimize relief operations. They learn to leverage openrouteservice's services for directions, isochrones, and optimization. Through practical exercises, participants engage in simulated scenarios, honing their skills in a hands-on manner. The objective is to equip participants with the necessary expertise to effectively support affected communities and streamline relief efforts. By incorporating information on damaged roads and bridges as obstacles, participants can plan routes efficiently. This training aims to empower individuals to make use of openrouteservice to overcome challenges in reaching affected areas and deliver aid promptly.
 
 
-This training aims to **familiarize participants with the capabilities of openrouteservice within Python** and demonstrate how it can be leveraged to address routing challenges during a disaster. Through a series of code examples we will explore the key features and functionalities of openrouteservice. You will learn how easy it is to interact with openrouteservice from Python and be able to integrate it directly into your own workflow.
+In the navigation on the left you'll find similar materials on the above stated scenario in three different environments. Additionally there is a tutorial on how to run a local customized instance of openrouteservice via docker.
+
+* [QGIS](https://giscience.github.io/openrouteservice-workshop/workshop/qgis.html)
+* [R](https://giscience.github.io/openrouteservice-workshop/workshop/R.html)
+* [Python](https://giscience.github.io/openrouteservice-workshop/workshop/python.html)
+* [Docker](https://giscience.github.io/openrouteservice-workshop/workshop/docker.html)
