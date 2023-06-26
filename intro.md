@@ -4,10 +4,11 @@
 Welcome to our workshop at the FOSS4G conference for an immersive experience in utilizing openrouteservice, a powerful routing software. Participants will gain practical knowledge on interacting with the service through various clients such as QGIS, R, and Python. Additionally, we will provide comprehensive guidance on setting up a local instance of openrouteservice using Docker, empowering attendees to explore its full potential.
 This page contains materials to start using openrouteservice in your projects. 
 
-![ors_maps_client](./img/ors_maps_client.png)
+
+<img src="./img/ors_maps_client.png" height="400px"></img>
 
 
-### Agenda 
+## Agenda for today
 
 | Time 	    | Topic                            	 |
 |-----------|------------------------------------|
@@ -22,3 +23,19 @@ This page contains materials to start using openrouteservice in your projects.
 | 12:30   	 | Recap                        	     |
 
 
+## Who are we?
+
+
+
+<img src="./img/who_are_we.png"></img>
+
+
+
+**Get in touch**
+
+Christina Ludwig
+[christina.ludwig@heigit.org](mailto:christina.ludwig@heigit.org)
+
+
+Marcel Reinmuth
+[marcel.reinmuth@heigit.org](mailto:[marcel.reinmuth@heigit.org)
