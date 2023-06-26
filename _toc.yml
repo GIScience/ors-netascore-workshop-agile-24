@@ -24,6 +24,8 @@ parts:
   - file: research/traffic_speed
 - caption: Workshop content
   chapters:
+   - file: workshop/intro
+     title: Introduction
    - file: workshop/qgis
      title: QGIS
    - file: workshop/Python
