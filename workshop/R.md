@@ -18,6 +18,9 @@ The following links provide detailed resources for each part of the training, en
 * [Part 2 - Disaster aware isochrones with openrouteservice](https://github.com/GIScience/openrouteservice-workshop-r/blob/master/disaster_isochrones.Rmd)
 * [Part 3 - Optimizing logistics in disaster situations](https://github.com/GIScience/openrouteservice-workshop-r/blob/master/disaster_optimization.Rmd)
 
+* [Rendered notebooks](https://giscience.github.io/openrouteservice-workshop-r/html/)
+
+
 **Part 1: Part 1 - Disaster aware routing with openrouteservice**
 In this section, you will learn how to utilize openrouteservice in R to calculate routes and directions. We will explore how to incorporate the openrouteservice API into your R scripts, focusing on disaster-aware routing to respond effectively to emergency situations such as the Ahr Valley flood. The resources provided will guide you through the process of accessing and interpreting route data, enabling you to make informed decisions for efficient and optimized routing.
 
