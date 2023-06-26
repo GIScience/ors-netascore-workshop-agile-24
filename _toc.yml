@@ -22,6 +22,7 @@ parts:
   - file: usecases/green_routing
   - file: research/centrality
   - file: research/traffic_speed
+  - file: research/avoidance_routing
 - caption: Workshop content
   chapters:
    - file: workshop/qgis
