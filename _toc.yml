@@ -21,10 +21,15 @@ parts:
   - file: usecases/disaster_portal
   - file: usecases/green_routing
   - file: research/centrality
+  - file: research/traffic_speed
 - caption: Workshop content
-   - file: workshop/qgis
-   - file: research/r
-   - file: research/docker
-
   chapters:
-  - file: workshop/workshop
+   - file: workshop/qgis
+     title: QGIS
+   - file: workshop/Python
+     title: Python
+   - file: workshop/R
+     title: R
+   - file: workshop/docker
+     title: Docker
+
