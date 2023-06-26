@@ -22,6 +22,3 @@ This page contains materials to start using openrouteservice in your projects.
 | 12:30   	 | Recap                        	     |
 
 
-LINK to slides pdf
-
-Paragraph on how to use this online material
