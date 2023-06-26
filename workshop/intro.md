@@ -16,5 +16,5 @@ In the navigation on the left you'll find similar materials on the above stated 
 
 * [QGIS](https://giscience.github.io/openrouteservice-workshop/workshop/qgis.html)
 * [R](https://giscience.github.io/openrouteservice-workshop/workshop/R.html)
-* [Python](https://giscience.github.io/openrouteservice-workshop/workshop/python.html)
+* [Python](https://giscience.github.io/openrouteservice-workshop/workshop/Python.html)
 * [Docker](https://giscience.github.io/openrouteservice-workshop/workshop/docker.html)
