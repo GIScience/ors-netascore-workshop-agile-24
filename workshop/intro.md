@@ -9,6 +9,8 @@
 
 <img src="../img/ahrtal_flood.png" height="300px">
 
+*Left: Damaged streets and settlements in the Ahr valley taken 16.7.2021. Right: Staging area for rescue helpers.*
+
 The training addresses the use of openrouteservice in a disaster scenario, particularly the 2021 Ahr Valley floods. Participants gain the knowledge to navigate damaged infrastructure and optimize relief operations. They learn to leverage openrouteservice's services for directions, isochrones, and optimization. Through practical exercises, participants engage in simulated scenarios, honing their skills in a hands-on manner. The objective is to equip participants with the necessary expertise to effectively support affected communities and streamline relief efforts. By incorporating information on damaged roads and bridges as obstacles, participants can plan routes efficiently. This training aims to empower individuals to make use of openrouteservice to overcome challenges in reaching affected areas and deliver aid promptly.
 
 
