@@ -60,7 +60,7 @@ Do you spot any difference in the isochrone shapes? Try playing around and chang
 
 ### Task 3: Use a layer with multiple locations to create isochrones
 
-The third task involves creating multiple directions from the disaster relief staging area to the affected communities in the Ahr Valley. With the Tool `Directions from points 2 layers` we can input one layer as origin/source and another layer as destinations. Make sure to enable `Row-by-Row` int the `Layer Mode` option to request a direction for every feature in layer1 x layer 2. The resulting directions will come in one single layer with multiple features.
+The third task involves creating multiple directions from the disaster relief staging area to the affected communities in the Ahr Valley. With the Tool `Directions from points 2 layers` we can input one layer as origin/source and another layer as destinations. Make sure to enable `All-by-All` int the `Layer Mode` option to request a direction for every feature in layer1 x layer 2. The resulting directions will come in one single layer with multiple features.
 
 <img src="../img/qgis_multipledirections_regular.png" height="400px"></img>
 
