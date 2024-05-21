@@ -62,9 +62,3 @@ openrouteservice was started in 2008 by the GIScience Research Group (Prof. Alex
 [comment]: # (|||)
 
 
-## Who uses openrouteservice?
-
-Over the years more and more users joined from a variety of countries, backgrounds and organisations.  
-
-<img src="../img/users.png" height="300px"></img>
-

@@ -4,34 +4,36 @@
 format: jb-book
 root: intro
 parts:
-- caption: Getting started
+- caption: Tutorial content
+  chapters:
+   - file: tutorial/tutorial
+     title: Introduction
+   - file: tutorial/resources
+     title: Resources for the tutorial
+   - file: tutorial/qgis
+     title: QGIS
+   - file: tutorial/openrouteservice
+     title: Openrouteservice
+   - file: tutorial/netascore
+     title: NetAScore
+   - file: tutorial/integration
+     title: Combining the services
+
+- caption: openrouteservice
   maxdepth: 0
   chapters:
-  - file: getting_started/01_what
+  - file: openrouteservice/01_what
     title: What is it?
-  - file: getting_started/02_why
-    title: Why use it?
-  - file: getting_started/03_how
+  - file: openrouteservice/02_how
     title: How to use it?
-  - file: getting_started/04_ecosystem
+  - file: openrouteservice/03_ecosystem
     title: How to integrate it?
-- caption: Use cases and research
+
+- caption: Research and usecases
   chapters:
-  - file: usecases/health_access
-  - file: usecases/disaster_portal
-  - file: usecases/green_routing
-  - file: research/centrality
-  - file: research/traffic_speed
-- caption: Workshop content
-  chapters:
-   - file: workshop/intro
-     title: Introduction
-   - file: workshop/qgis
-     title: QGIS
-   - file: workshop/Python
-     title: Python
-   - file: workshop/R
-     title: R
-   - file: workshop/docker
-     title: Docker
+    - file: openrouteservice/usecases/health_access
+    - file: openrouteservice/usecases/disaster_portal
+    - file: openrouteservice/usecases/green_routing
+    - file: openrouteservice/research/centrality
+    - file: openrouteservice/research/traffic_speed
 

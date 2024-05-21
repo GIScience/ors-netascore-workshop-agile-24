@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: openrouteservice
-author: HeiGIT gGmbH & GIScience Research Group, Heidelberg University
+title: openrouteservice and netascore tutorial - agile 2024
+author: HeiGIT gGmbH; GIScience Research Group, Heidelberg University;
 logo: img/openrouteservice.png
 
 # Force re-execution of notebooks on each build.
@@ -21,7 +21,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/GIScience/openrouteservice-workshop  # Online location of your book
+  url: https://github.com/GIScience/ors-netascore-workshop-agile-24  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
@@ -30,7 +30,7 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
-  home_page_in_navbar: false  # Whether to include your home page in the left Navigation Bar
+  #home_page_in_navbar: false  # Whether to include your home page in the left Navigation Bar
   favicon: img/openrouteservice.png
 
 parse:
