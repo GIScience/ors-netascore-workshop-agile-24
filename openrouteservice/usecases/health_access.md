@@ -21,7 +21,7 @@ Example Kosovo
 [https://apps.heigit.org/healthcare_access/#/countries/xkx](https://apps.heigit.org/healthcare_access/#/countries/xkx/primary/adm0)
 
 
-![healthcare_access_map_example](../img/healthcare_access_map_example.png)
+![healthcare_access_map_example](../../img/research_usecases/healthcare_access/healthcare_access_map_example.png)
 
 
 

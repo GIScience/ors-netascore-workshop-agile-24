@@ -5,5 +5,5 @@
 2023-06-28, 13:30–14:00 (Europe/Tirane), UBT E / N209 - Floor 3
 ```
 
-![targeted_centrality02](../img/traffic_speed.png)
+![targeted_centrality02](../../img/research_usecases/traffic_speed/traffic_speed.png)
 

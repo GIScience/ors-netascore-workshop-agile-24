@@ -29,7 +29,7 @@ Closeness centrality is a measure that quantifies how easily a node in a network
 * The analysis contributes to an exposure analysis by identifying individuals who may act as carriers of the disease, potentially getting bitten by a mosquito and infecting them, thereby aiding in disease prevention and control strategies.
 
 
-![closeness_centrality_rio](../img/closeness_centrality_rio.png)
+![closeness_centrality_rio](../../img/research_usecases/centrality/closeness_centrality_rio.png)
 
 ## Betweenness and targeted centrality
 
@@ -40,7 +40,7 @@ Betweenness centrality is a measure that quantifies the importance or influence 
 * Betweenness centrality: Rank nodes/edges by their importance/influence for overall connectivity within the network (eg bridges, bridgeheads)
 
 
-![targeted_centrality02](../img/targeted_centrality07.png)
+![targeted_centrality02](../../../../img/research_usecases/centrality/targeted_centrality07.png)
 
 * Shortest path between all nodes
 * Betweenness centrality score represents the amount of visits at every node/edge
@@ -49,26 +49,26 @@ Betweenness centrality is a measure that quantifies the importance or influence 
   - _How important is a single road segment for commuting_
   - _How important is a single road segment for access towards healthcare_
 
-![targeted_centrality03](../img/targeted_centrality06.png)
+![targeted_centrality03](../../img/research_usecases/centrality/targeted_centrality06.png)
 
 * Modification: shortest paths between
   - Departure: all nodes
   - Destination: hospital
 
-![targeted_centrality04](../img/targeted_centrality04.png)
+![targeted_centrality04](../../img/research_usecases/centrality/targeted_centrality04.png)
 
 * Modification: shortest paths between all nodes and subset
   - Departure: all nodes
   - Destination: hospital
 * Limitation: Biased towards roadnetwork density.
 
-![targeted_centrality05](../img/targeted_centrality03.png)
+![targeted_centrality05](../../img/research_usecases/centrality/targeted_centrality03.png)
 
 * Further modification: shortest paths between subset and subset
   - Departure: population centers
   - Destination: hospital
 
-![targeted_centrality05](../img/targeted_centrality02.png)
+![targeted_centrality05](../../img/research_usecases/centrality/targeted_centrality02.png)
 
 * Possibility to include population counts as weights
 * Population density is not uniform
@@ -85,7 +85,7 @@ Betweenness centrality is a measure that quantifies the importance or influence 
 * Highlighted the significance of targeted betweenness centrality in analyzing such scenarios.
 
 
-![idai_centrality](../img/idai_centrality.png)
+![idai_centrality](../../img/research_usecases/centrality/idai_centrality.png)
 
 
 By the way there is a Workshop at the GIScience Conference this year.
