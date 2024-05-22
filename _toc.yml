@@ -10,24 +10,37 @@ parts:
      title: Introduction
    - file: tutorial/resources
      title: Resources for the tutorial
-   - file: tutorial/qgis
-     title: QGIS
-   - file: tutorial/openrouteservice
-     title: Openrouteservice
    - file: tutorial/netascore
      title: NetAScore
+   - file: tutorial/openrouteservice
+     title: Openrouteservice
+   - file: tutorial/qgis
+     title: QGIS
    - file: tutorial/integration
      title: Combining the services
+
+- caption: OpenStreetMap
+  maxdepth: 0
+  chapters:
+    - file: openstreetmap/intro.md
+      title: What is OpenStreetMap?
+
+- caption: NetAScore
+  maxdepth: 0
+  chapters:
+    - file: netascore/intro.md
+      title: What is NetAScore?
 
 - caption: openrouteservice
   maxdepth: 0
   chapters:
   - file: openrouteservice/01_what
-    title: What is it?
+    title: What is openrouteservice?
   - file: openrouteservice/02_how
-    title: How to use it?
+    title: How to use openrouteservice?
   - file: openrouteservice/03_ecosystem
-    title: How to integrate it?
+    title: How to integrate openrouteservice?
+
 
 - caption: Research and usecases
   chapters:

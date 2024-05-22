@@ -1,6 +1,7 @@
 # Introduction
 
-The goal of this tutorial is to introduce you to some technologies
+The goal of this tutorial is to introduce you to some open source technologies that can be used to get a better 
+understanding of walkability and bikability.
 
 There are four parts of the tutorial which can be worked on (mostly) in any order. If you want to focus on one in 
 particular, then that's fine.
