@@ -33,7 +33,7 @@ GitHub: [https://github.com/giscience/ors-map-client](https://github.com/giscien
 
 [comment]: # (|||)
 
-<img src="../img/openrouteservice/clients.png" height="300px"></img>
+<img src="../img/openrouteservice/clients.png" height="300px" alt="ors maps client" />
 
 [comment]: # (|||)
 
@@ -51,7 +51,7 @@ GitHub: [https://github.com/GIScience/orstools-qgis-plugin](https://github.com/G
 
 [comment]: # (|||)
 
-<img src="../img/openrouteservice/qgis_plugin.png" height="300px"></img>
+<img src="../img/openrouteservice/qgis_plugin.png" height="300px" alt="ors qgis plugin" />
 
 [comment]: # (|||)
 

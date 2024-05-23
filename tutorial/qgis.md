@@ -21,19 +21,19 @@ following steps:
 
 1. Open the Plugins Manager from the top menu Plugins -> Install and manage plugins
 
-![img.png](../img/tutorial/qgis/plugin-menu.png)
+![qgis plugin menu](../img/tutorial/qgis/plugin-menu.png)
 
 
 2. This will bring up the Plugin manager window (after refreshing the repo listings). In the search bar, enter "ors 
 tools", select the "ORS Tools" plugin, and click "Install Plugin" (bottom right of the window). This will install the 
 plugin into your QGIS environment.
 
-![img.png](../img/tutorial/qgis/plugin-manager.png)
+![qgis plugin manager](../img/tutorial/qgis/plugin-manager.png)
 
 3. To make understanding the data easier, we will also install the "Quick Map Services" plugin. You do this the same as 
 for the openrouteservice plugin, but search and select the "QuickMapServices" plugin.
 
-![img.png](../img/tutorial/qgis/plugin-manager-qms.png)
+![qgis plugin manager](../img/tutorial/qgis/plugin-manager-qms.png)
 
 ## 2. Setting up the ORS Tools plugin
 
@@ -43,7 +43,7 @@ key which can be downloaded from the resources section of this tutorial.
 
 To configure a "provider", navigate to the Web -> ORS Tools -> Provider Settings menu.
 
-![img.png](../img/tutorial/qgis/orstools-provider-menu.png)
+![ors tools plugin provider menu](../img/tutorial/qgis/orstools-provider-menu.png)
 
 This will open up the Provider Settings window. We need to add a new provider by clicking on the "Add" button (lower 
 left corner) which will then prompt you for a name. Let's call this provider "agile conference openrouteservice". 
@@ -53,7 +53,7 @@ and the API key that you can find in the resources section. You can leave the Re
 of 60. Once you have entered this information, click on Save to store it ready for use when you come to doing some 
 routing. 
 
-![img.png](../img/tutorial/qgis/orstools-provider-settings.png)
+![ors tools plugin provider settings](../img/tutorial/qgis/orstools-provider-settings.png)
 
 ## 3. Doing some routing
 
@@ -64,7 +64,7 @@ the OSM data as a base map - the QuickMapServices plugin. To load that OSM data,
 plugin top menu, so Web -> QuickMapServices -> OSM -> OSM Standard. This loads the OSM data as a raster base map in 
 QGIS.
 
-![img.png](../img/tutorial/qgis/quickmapservices-menu.png)
+![quickmapservice menu](../img/tutorial/qgis/quickmapservices-menu.png)
 
 The openrouteservice setup that we will use for this tutorial contains road data for Scotland, so we need to make sure 
 that our routes that we want to generate are in scotland. In this tutorial, we will focus on Glasgow, but feel free to 
@@ -74,7 +74,7 @@ The bread and butter of the ORS Tools plugin is to allow you to generate a route
 public openrouteservice API. When you load the plugin through the Web -> ORS Tools -> ORS Tools menu (or by clicking 
 on the plugin's icon in the toolbar), you will get the main window for the plugin:
 
-![img.png](../img/tutorial/qgis/orstools.png)
+![orstools plugin](../img/tutorial/qgis/orstools.png)
 
 At the top of this window you will find some links to useful online resources such as the Ask forum which is a great 
 place to go to if you have a question or problem relating to using this plugin or any other aspect of 
@@ -96,7 +96,7 @@ where the university is to set the start point, and then double click around the
 (if you single click, it will add a via point rather than specifying the end point). The following image shows 
 roughly where to place these points:
 
-![img.png](../img/tutorial/qgis/start_end_points.png)
+![start and end points of route](../img/tutorial/qgis/start_end_points.png)
 
 After you double click to set the end point, you will be returned to the ORS Tools window and you can see the 
 vertices in the list. If you accidentally added a via point or got another point in the wrong locations, you can 
@@ -105,14 +105,14 @@ in the list, clicking this button will clear all the points in the list. To make
 should click on the "Save Points" icon (under the "Delete Point" button) which will add the points to QGIS as a 
 point layer called "Vertices".
 
-![img.png](../img/tutorial/qgis/orstools-basic-filled.png)
+![orstools plugin routing basic settings](../img/tutorial/qgis/orstools-basic-filled.png)
 
 Now that all the information is added, you can click on "Apply" and you should get the shortest bike route between 
 these two points added to QGIS as a layer. If there was an error displayed, make sure that you have selected the 
 correct provider, that ti is configured correctly (with the API key from resources), and that you have selected 
 "cycling-regular" and "shortest".
 
-![img.png](../img/tutorial/qgis/basic_route.png)
+![basic route from ors](../img/tutorial/qgis/basic_route.png)
 
 So there we are, you now have a route in QGIS. If you open the attribute table for this layer, you will see that the 
 feature has information about how long it is, and the estimated amount of time needed for the journey. It is a good 
@@ -130,7 +130,7 @@ train station by foot in specified times.
 To start, open up the ORS Tools plugin, and this time click on the "Batch Jobs" button. This will hide the point 
 list area and instead bring show some buttons for doing some more advanced analysis. 
 
-![img.png](../img/tutorial/qgis/orstools_batch_jobs.png)
+![orstools batch job panel](../img/tutorial/qgis/orstools_batch_jobs.png)
 
 From these buttons, click on "Isochrones from Point" to open a second ORS Tools window where you set parameters for 
 doing reachability analysis. In this window, select the "agile conference openrouteservice" as the provider, and 
@@ -143,13 +143,13 @@ seperated value that represent either time in minutes, or distance in metres. We
 from the station in 10, 20 and 30 minutes, so enter "10,20,30" in this box. Leave location type and advanced options 
 as is, and then click on "Run". 
 
-![img.png](../img/tutorial/qgis/orstools_batch_reachability_settings.png)
+![orstool reachability settings](../img/tutorial/qgis/orstools_batch_reachability_settings.png)
 
 
 This will add the isochrone to QGIS as a layer, with polygons representing how far you can get in 10, 20 and 30 
 minutes by foot from the train station.
 
-![img.png](../img/tutorial/qgis/basic_isochrone.png)
+![reachability polygons](../img/tutorial/qgis/basic_isochrone.png)
 
 
 ## 5. Assessing bikability
@@ -182,7 +182,7 @@ will result in the same shortest route as before as we are telling it that the w
 having this information is important when we want to get the extra info about the bikability (the csv extra info 
 needs to know which weighting to return).
 
-![img.png](../img/tutorial/qgis/bikability_0_settings.png)
+![orstools bikability settings](../img/tutorial/qgis/bikability_0_settings.png)
 
 When you click on "Run" you should then have the resulting route added to QGIS as a layer (Note: the route is 
 displayed as a simple line which may be difficult to see against the OSM background map). Though this route is the 
@@ -198,7 +198,7 @@ and 100 is not bikable, you could select the "Spectral" colour ramp, adn then ch
 values are seen as red. Now select an "Equal Interval" Mode with 5 Classes, and click the "Classify" button. This 
 will create 5 equally sized classes that will then be used to show the information.
 
-![img.png](../img/tutorial/qgis/bikability_0_symbology.png).
+![bikability route symbology settings](../img/tutorial/qgis/bikability_0_symbology.png).
 
 Once you have changed these settings, click "OK" to change the symbology of the route. If the lines are too small to 
 see well, you can go back to the symbology settings, click on the "Symbol" area near the top of the window, and 
@@ -206,13 +206,13 @@ change the width of the line. You can also change the transparency of the backgr
 Standard" layer, selecting properties, going to the "transparency" tab and then using the slider to reduce the 
 opacity. Now you are able to see the bikability of the sections of the route.
 
-![img.png](../img/tutorial/qgis/bikability_0_route.png)
+![bikability route](../img/tutorial/qgis/bikability_0_route.png)
 
 Now what does a route look like where we tell it that we want a more bikable route. To see this, follow the above 
 steps, but this time set the Csv Factor value to be 1. What we see in the resultant route is one that avoids the 
 areas in the original route that were seen as low bikability.
 
-![img.png](../img/tutorial/qgis/bikability_1_route.png)
+![bikability route](../img/tutorial/qgis/bikability_1_route.png)
 
 If we want to see the difference in length and travel time, we need to rerun the above steps, but **not** select the 
 csv option in the Extra Info area. This will result in the route being returned as a single line with the duration 
