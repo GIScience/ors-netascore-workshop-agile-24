@@ -40,7 +40,7 @@ Betweenness centrality is a measure that quantifies the importance or influence 
 * Betweenness centrality: Rank nodes/edges by their importance/influence for overall connectivity within the network (eg bridges, bridgeheads)
 
 
-![targeted_centrality02](../../../../img/research_usecases/centrality/targeted_centrality07.png)
+![targeted_centrality02](../../img/research_usecases/centrality/targeted_centrality07.png)
 
 * Shortest path between all nodes
 * Betweenness centrality score represents the amount of visits at every node/edge

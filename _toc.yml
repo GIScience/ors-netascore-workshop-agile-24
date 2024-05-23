@@ -48,5 +48,4 @@ parts:
     - file: openrouteservice/usecases/disaster_portal
     - file: openrouteservice/usecases/green_routing
     - file: openrouteservice/research/centrality
-    - file: openrouteservice/research/traffic_speed
 

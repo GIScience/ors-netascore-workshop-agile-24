@@ -1,4 +1,9 @@
-<img src="../img/openstreetmap/osm_logo.png" alt="osm logo" height="150px" style="float: left; margin: 20px" />
+```{image} ../img/openstreetmap/osm_logo.png
+:alt: osm logo
+:class: float-left
+:height: 150px
+```
+
 
 # OpenStreetMap
 

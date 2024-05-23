@@ -27,7 +27,11 @@ about the tools used.
 
 ## Who are we?
 
-<img src="./img/rousell.png" height="150" style=" float: left; margin: 20px" />
+
+```{image} ./img/rousell.png
+:alt: Adam Rousell
+:class: organiser-profile-photo
+```
 
 **Adam Rousell** is a PostDoc researcher at **HeiGIT gGmbH** in the Smart Mobility team. [HeiGIT](https://heigit.org), 
 the Heidelberg Institute for Geoinformation Technology at [Heidelberg University](https://uni-heidelberg.de) is a 
@@ -41,7 +45,10 @@ academic research and real-life technology.
 
 <div style="clear: both"></div>
 
-<img src="./img/werner.png" height="150" style=" float: left; margin: 20px" />
+```{image} ./img/werner.png
+:alt: Christian Werner
+:class: organiser-profile-photo
+```
 
 **Christian Werner** ...
 
@@ -55,10 +62,28 @@ Adam Rousell
 
 Christian Werner
 
-<div style="background-color: #FFFFFF; padding: 10px">
-    <img src="./img/heigit_logo.png" height="50px" style="margin-right: 20px" />
-    <img src="./img/giscience_logo.png" height="50px" style="margin-right: 20px" />
-    <img src="./img/uhei_logo.png" height="50px" style="margin-right: 20px" />
-    <img src="./img/zgis_logo.png" height="50px" style="margin-right: 20px" />
-    <img src="./img/salzburg_logo.png" height="50px" style="margin-right: 20px" />
-</div>
+
+```{image} ./img/heigit_logo.png
+:alt: HeiGIT logo
+:class: footer-logo
+```
+
+```{image} ./img/giscience_logo.png
+:alt: GIScience logo
+:class: footer-logo
+```
+
+```{image} ./img/uhei_logo.png
+:alt: UHEI logo
+:class: footer-logo
+```
+
+```{image} ./img/zgis_logo.png
+:alt: Z_GIS logo
+:class: footer-logo
+```
+
+```{image} ./img/salzburg_logo.png
+:alt: Salzburg logo
+:class: footer-logo
+```
