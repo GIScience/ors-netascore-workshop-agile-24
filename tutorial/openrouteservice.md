@@ -5,26 +5,26 @@
 - [Docker](https://www.docker.com/)
 
 The simplest way of running openrouteservice is through Docker and Docker Compose. To install these on your system, 
-you can follow the guides provided by Docker at ...
+you can follow the guides provided by Docker at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 
 ### 1. Getting the resources
 
 The very first thing that you need to get openrouteservice running is to get the Docker Compose file. You can create 
 this yourself, but the recommended method is to download one that has been automatically created for the latest 
-version of openrouteservice. This file is available in the Assets part of the latest release page 
-(https://github.com/GIScience/openrouteservice/releases/tag/v8.0.1). Whilst you ar there, it is also a good idea to 
-download the configuration file `ors-config.yaml`. Openrouteservice can have settings applied through this 
-configuration file or through environment variables, but in this tutorial we will only work with the yaml configuration.
+version of openrouteservice. This file is available in the Assets part of the latest release page ([https://github.com/GIScience/openrouteservice/releases/tag/v8.0.1](https://github.com/GIScience/openrouteservice/releases/tag/v8.0.1)). 
+Whilst you are there, it is also a good idea to download the configuration file `ors-config.yaml`. Openrouteservice can 
+have settings applied through this configuration file, through environment variables or via parameters in the docker 
+compose file, but in this tutorial we will only work with the yaml configuration.
 
 You should also download some OSM data that you can use in your local instance. One thing to keep in mind when 
 choosing the area you want ot use is how much data is there. The more data there is, the more RAM and time needed 
 for building the routing graph. As a general rule of thumb, we say that the amount of RAM needed **per profile** is at 
 least twice the size of the OSM pbf file, meaning if you wanted to build the car profile for Germany, which has a pbf 
 file size (from GeoFabrik) of 4.0GB, you would need to allocate at least 8.0GB of RAM. A good place to download OSM 
-data from (as already mentioned) is GeoFabrik. From their website (https://download.geofabrik.de) you can download 
-various extents of OSM data split by continent, country or region. If you want a smaller region than what they offer,
-then you can also use tools such as Osmium to extract regions from pbf files. For this tutorial, we have provided a 
-pbf file of Glasgow, which you can access from the resources page of this workbook.
+data from (as already mentioned) is GeoFabrik. From their website ([https://download.geofabrik.de](https://download.geofabrik.de)) 
+you can download various extents of OSM data split by continent, country or region. If you want a smaller region than 
+what they offer, then you can also use tools such as Osmium to extract regions from pbf files. For this tutorial, we 
+have provided a pbf file of Glasgow, which you can access from the [resources](./resources.md) web drive for this tutorial.
 
 ### 2. Setting up the file structure
 If you are using the docker compose file provided by openrouteservice (see previous step), then we will be working 
@@ -45,7 +45,7 @@ openrouteservice
 ```
 
 To start with, create a folder called `openrouteservice` which will act as the root of the openrouteservice folder 
-structure. Inside this folder you should put your `docker-compose.yml` file and create subfolder which will then be 
+structure. Inside this folder you should put your `docker-compose.yml` file and create subfolders which will then be 
 mapped into the Docker container. These folders will then be used to pass data into openrouteservice, as well as 
 preserving data generated. The folders needed are:
 
@@ -70,9 +70,9 @@ Before configuring openrouteservice itself, you need to setup the docker compose
 the `docker-compose.yml` file. When you use the file provided by openrouteservice, the important aspects that need 
 changing before running openrouteservice are the mappings of volumes and the amount of RAM to allocate. Under the 
 `volumes` section of the file, you will see a number of commented out (with a #) lines. These are the mappings to 
-the folders that we created in teh previous step, and so to allow the mappings you need to uncomment them (remove 
-the first # of each line). You also need to comment out (add a # at the start of the line) the first mapping. Int eh 
-end, the volume section should look as follows:
+the folders that we created in the previous step, and so to allow the mappings you need to uncomment them (remove 
+the first `#` of each line). You also need to comment out (add a `#` at the start of the line) the first mapping. In 
+the end, the volume section should look as follows:
 
 ``` yaml
 volumes:  # Mount relative directories. ONLY for local container runtime. To switch to docker managed volumes see 'Docker Volumes configuration' section below.
@@ -86,19 +86,21 @@ volumes:  # Mount relative directories. ONLY for local container runtime. To swi
 
 Next, we may need to edit the amount of RAM allocated. Again, the minimum amount of RAM is generally at least twice 
 the size of the pbf file. You change this with the `XMS` and `XMX` properties (minimum and maximum size of the Java 
-heap respectively). Once you have modified these parts of the docker-compose file, you are ready to move on to 
-modifying the configuration of openrouteservice itself.
+heap respectively). As the glasgow pbf file is less than 10MB, we can leave these values as the default (we could 
+even reduce them if we wanted). Once you have modified these parts of the docker-compose file, you are ready to move on 
+to modifying the configuration of openrouteservice itself.
 
-Configuration of openrouteservice is handled via the ors-config file (at least in this tutorial). If you take a look 
+Configuration of openrouteservice is handled via the `ors-config.yml` file (at least in this tutorial). If you take a 
+look 
 inside this file, you will see a lot of commented out lines which give examples of some settings that you can change. 
 Right now, the most important setting is which OSM file to use for building graphs. About one third down this file 
 you will see the property `source_file`, which by default is set to `ors-api/src/test/files/heidelberg.osm.gz`. This 
 is a small sample file provided by openrouteservice for Heidelberg in Germany, but we want to use our own OSM file. 
 As we are mapping the `files` folder to `/home/ors/files`inside the container, we need to change that property to 
-match. So if we have an OSM file called `my-osm-data.osm.pbf` inside the `files` folder, we change the property in 
-the config file to be `source_file: /home/ors/files/my-osm-data.osm.pbf`. The important thing to note here is that 
-the path is for the file **inside of the container**, hence why use the `/home/ors/files` rather than the path that 
-is on our local machine.
+match. So in our case, we have the `glasgow-latest.osm.pbf` file inside the `files` folder, so we change the 
+property in the config file to be `source_file: /home/ors/files/glasgow-latest.osm.pbf`. The important thing to note 
+here is that the path is for the file **inside of the container**, hence why use the `/home/ors/files` rather than the 
+path that is on our local machine.
 
 Once you have changed that setting, you are good to go to build your first openrouteservice instance! 
 
@@ -107,39 +109,40 @@ Once you have changed that setting, you are good to go to build your first openr
 To start your own openouteservice instance, all you need to do is to use docker compose. From the same folder as the 
 `docker-compose.yml` file, open a terminal window and execute `docker compose up -d` (you may need to do this as a 
 sudo command depending on your system's Docker setup). The `up` part tells docker compose to start the containers 
-listed under the `services` part of the docker-compose file and any relevent networks. The `-d`tells docker compose 
-to do this in detached mode, meaning that it is running in the background. If you execute `docker ps` you should see 
-a container running called ors-app.
+listed under the `services` part of the docker-compose file and any relevant networks. The `-d`tells docker compose 
+to do this in detached mode, meaning that it is running in the background. Depending on if this is the first time 
+running openrouteservice in Docker or not, it may take some time before this command finishes. When the command has 
+executed, if you execute `docker ps` you should see a container running called ors-app.
 
 You can follow what is happening in the build process by viewing the docker logs using `docker logs -f ors-app`. The 
 `-f` means "follow" so any new log information will be shown on the terminal. If there are no errors, after some 
 time you should see something similar to the following in the log output:
 
 ```
-ORS-pl-walking [ o.h.o.r.g.e.ORSGraphHopper         ]   flushed graph totalMB:4644, usedMB:3653)
-ORS-pl-walking [ o.h.o.r.RoutingProfile             ]   [1] Edges: 1474291 - Nodes: 1208923.
-ORS-pl-walking [ o.h.o.r.RoutingProfile             ]   [1] Total time: 150.787s.
-ORS-pl-walking [ o.h.o.r.RoutingProfile             ]   [1] Finished at: 2024-05-15 11:58:41.
-ORS-Init [ o.h.o.r.RoutingProfileManager            ]   Total time: 305.783s.
+ORS-pl-car [ o.h.o.r.g.e.ORSGraphHopper             ]   flushed graph totalMB:1024, usedMB:563)
+ORS-pl-car [ o.h.o.r.RoutingProfile                 ]   [1] Edges: 43242 - Nodes: 35432.
+ORS-pl-car [ o.h.o.r.RoutingProfile                 ]   [1] Total time: 73.014s.
+ORS-pl-car [ o.h.o.r.RoutingProfile                 ]   [1] Finished at: 2024-05-29 10:07:57.
+ORS-Init [ o.h.o.r.RoutingProfileManager            ]   Total time: 73.206s.
 ORS-Init [ o.h.o.r.RoutingProfileManager            ]   ========================================================================
 ORS-Init [ o.h.o.r.RoutingProfileManager            ]   ====> Recycling garbage...
-ORS-Init [ o.h.o.r.RoutingProfileManager            ]   Before: Total - 4.54 GB, Free - 990.69 MB, Max: 8 GB, Used - 3.57 GB
-ORS-Init [ o.h.o.r.RoutingProfileManager            ]   After: Total - 4 GB, Free - 3.26 GB, Max: 8 GB, Used - 759.19 MB
+ORS-Init [ o.h.o.r.RoutingProfileManager            ]   Before: Total - 1024 MB, Free - 459.64 MB, Max: 2 GB, Used - 564.36 MB
+ORS-Init [ o.h.o.r.RoutingProfileManager            ]   After: Total - 1024 MB, Free - 943.80 MB, Max: 2 GB, Used - 80.20 MB
 ORS-Init [ o.h.o.r.RoutingProfileManager            ]   ========================================================================
 ORS-Init [ o.h.o.r.RoutingProfileManager            ]   ====> Memory usage by profiles:
-ORS-Init [ o.h.o.r.RoutingProfileManager            ]   [1] 287.03 MB (37.8%)
-ORS-Init [ o.h.o.r.RoutingProfileManager            ]   Total: 287.03 MB (37.8%)
+ORS-Init [ o.h.o.r.RoutingProfileManager            ]   [1] 27.03 MB (33.6%)
+ORS-Init [ o.h.o.r.RoutingProfileManager            ]   Total: 27.03 MB (33.6%)
 ORS-Init [ o.h.o.r.RoutingProfileManager            ]   ========================================================================
 ```
 
 Don't worry if the numbers are different - that all depends on how much RAM has been allocated and how big the osm 
 files are. The important thing is that you see the `[1] Finished at:` part as that indicates that building/loading 
-of graphs has finished
+of graphs has finished. 
 
 You can also see whether the instance is ready to receive requests (it has built and/or loaded graphs) by calling 
 the openrouteservice API `health` endpoint. When you execute `curl localhost:8080/ors/v2/health` you will either get 
-a response of `status: ready` or `status: not ready` depending on if it is ready or not. When you see `status: 
-ready` then openrouteservice is up and running and ready to receive routing requests. 
+a response of `{"status": "ready"}` or `{"status": "not ready"}` depending on if it is ready or not. When you see 
+`{"status": "ready"}` then openrouteservice is up and running and ready to receive routing requests. 
 
 CONGRATULATIONS! You now have your very own openrouteservice instance!
 
@@ -161,58 +164,84 @@ global API.
   'http://localhost:8080/ors/v2/directions/driving-car/geojson' \
   -H 'Content-Type: application/json; charset=utf-8' \
   -H 'Accept: application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8' \
-  -d '{"coordinates":[[8.681495,49.41461],[8.687872,49.420318]],"preference":"shortest"}'
+  -d '{"coordinates":[[-4.288015,55.872373],[-4.257717,55.859417]],"preference":"shortest"}'
 ```
 
-In the above example, the difference between the call to the loca and the global instance is the URL - 
+In the above example, the difference between the call to the local and the global instance is the URL - 
 `http://localhost:8080/ors/v2/directions/driving-car/geojson` rather than 
 `https://api.openrouteservice.org/v2/directions/driving-car/geojson` (you also don't need to provide an API key in 
-requests to local instances).
+requests to local instances). Also, the coordinates need to be somewhere inside the area that you have built the 
+graphs for, so we have changed the default coordinates in Heidelberg to be some in Glasgow.
 
 Now that you know how to query the instance, feel free to play around with generating routes, isochrones, and matrix 
 requests. You can use the interactive documentation to produce a wide variety of requests that you can make, just 
-remember that currently you can only do calls to the car profile
+remember that currently you can only do calls to the car profile, and within Glasgow.
 
 ### 6. Using different profiles
 
 So now you have an instance running and you can make queries, but only to the car profile. Let's change that!
 
 Getting other profiles built in the docker openrouteservice setup is as simple as modifying a couple of lines in the 
-ors-config.yml file, and then recreating the openrouteservice Docker container. So, let's turn on the walking 
+`ors-config.yml` file, and then recreating the openrouteservice Docker container. So, let's turn on the walking 
 profile (seeing as we are in a tutorial about walkability). 
 
-The first thing to do is to open up the ors-config.yml file for editing. As you scroll down (past the huge chunks of 
+The first thing to do is to open up the `ors-config.yml` file for editing. As you scroll down (past the huge chunks of 
 commented out configurations) you will come across the `profiles` section (roughly halfway). This is where we define 
 the profiles that graphs are built for and can subsequently be routed against. As you can see, under this there is 
 the `car:` section, which is what tells openrouteservice to build the car profile. Under this section there are a 
 number of configuration properties such as `preparation: -> methods:` which define the algorithms that are run to 
 build and query the graphs. We don't need to think about these just yet, but it's good to know that they are there. 
 The part that we are currently interested in start at the `# walking:` line. As you can see, this is commented out 
-and so openrouteservice in effect doesn't know anything about building the walking profile. If we remove the #, the 
-line is now active. By doing that, when we run openrouteservice with this configuration file, it will know to build 
-the walking graph. So let's do that.
+and so openrouteservice in effect doesn't know anything about building the walking profile. If we remove the `#`, the 
+line is now active. We also need to add the line `enabled: true` to tell openrouteservice that this profile is to be 
+activated. That section of the configuraiton file should now look like the following (indentation is important!):
+
+```yaml
+#          HillIndex:
+#          TrailDifficulty:
+      walking:
+         enabled: true
+#        profile: foot-walking
+#        encoder_options:
+```
+
+By doing that, when we run openrouteservice with this configuration file, it will know to build the walking graph with 
+default parameters. So let's do that.
 
 For any changes made in the config file to take effect, we need to recreate the openrouteservice Docker container. 
 To do that, we need to be in a terminal window in the root folder of the openrouteservice setup (where your 
 `docker-compose.yml` file is) and execute the command `docker compose down`. This shuts down the openrouteservice 
 container, but as we are using volumes mapped to folders, the graphs generated for the car profile are persisted and 
-will be loaded into the container when we restart it, so those won't need rebuilding.
+will be loaded into the container when we restart it, so those won't need rebuilding. You can see these by looking 
+inside the `graphs`
 
 This is a good spot to point out that if you ever need to rebuild graphs (e.g. if you change the osm data) then you 
 need to delete the corresponding graphs folder. For example, if we wanted to rebuild the graphs for the car profile, 
-we would need to delete the `./graphs/car` folder on the host machine.
+we would need to delete the `./graphs/car` folder on the host machine. If they are not deleted, openrouteservice 
+will automatically load them rather than rebuilding them.
 
 As we are increasing the number of profiles that are being run, we also need to make sure that there is enough RAM 
 available. You can change the values in the `docker-compose.yml` file as described in section 3. So if you are 
-building two profiles on a 1GB pbf file, you will need to allocate at least 4GB (2GB for car, 2GB for walking).
+building two profiles on a 1GB pbf file, you will need to allocate at least 4GB (2GB for car, 2GB for walking). 
+Again, as we are using a small data file, we don't need to change anything here.
 
-OK, so now openrouteservice has shut down. we need to restart it again with the same `docker compose up -d` command. 
+OK, so now openrouteservice has shut down, we need to restart it again with the same `docker compose up -d` command. 
 Again you can watch the logs with `docker logs -f ors-app` and when you see that the profiles have finished loading, 
 you can start querying. Though you are loading in the car graphs so they won't be built again, the walking graphs 
 will need to be built so it may take a little time.
 
 When building has finished, you can make queries against both the car and the walking profile as described in the 
-previous section.
+previous section. An example of routing for the walking profile is:
+
+``` bash
+  curl -X POST \
+  'http://localhost:8080/ors/v2/directions/foot-walking/geojson' \
+  -H 'Content-Type: application/json; charset=utf-8' \
+  -H 'Accept: application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8' \
+  -d '{"coordinates":[[-4.288015,55.872373],[-4.257717,55.859417]],"preference":"shortest"}'
+```
+
+Here, you can see that we have changed the profile in the url from `driving-car` to `foot-walking`.
 
 
 ### 7. Let's do some walkable routing
@@ -221,14 +250,15 @@ So now you know how to setup openrouteservice, how to use different OSM data, an
 The final part of this tutorial is to do some routing which takes into account walkability.
 
 Within openrouteservice, there are things called "extended storages" which are basically additional attributes that 
-are added to the routing graph. Normally, the information stored in teh graph itself are just the distance between 
+are added to the routing graph. Normally, the information stored in the graph itself are just the distance between 
 two nodes, and how long it takes to travel that distance. When you do routing that needs to take into account things 
 such as walkability or avoiding things such as kerbs over a certain height or crossing country borders, that is where 
 extended storages come into play. Some storages allow passing in extra data which are then matched to edges in the 
-graph when the graph itself is built, such is the case with walkability. In this example, we will make use of a generic 
-extended storage in openrouteservice called the csv storage (named so because data is passed to openrouteservice in 
-the form of a csv file). This storage applies additional weightings to edges in the graph which then affect how much 
-each edge costs. 
+graph when the graph itself is built, such is the case with walkability. Others (such as the wheelchair extended 
+storage) only uses the base data from OSM and act as just storages for this extra information which are then used at 
+route generation. In this example, we will make use of a generic extended storage in openrouteservice called the csv 
+storage (named so because data is passed to openrouteservice in the form of a csv file). This storage applies 
+additional weightings to edges in the graph which then affect how much each edge costs. 
 
 Firstly, lets take a quick look at the structure of a csv file that can be used in the storage:
 
@@ -237,9 +267,12 @@ Firstly, lets take a quick look at the structure of a csv file that can be used 
 |672899942|0.165|0.647|
 |334525|0.873|0.811|
 
-There are a few rules that need to be taken into account for the csv file. Firstly, the first column is the OSM id 
-of the way that the value refers to. Secondly, you can have any number of additional columns, but the values need to be 
-between 0 and 1, with 0 indicating that the way is completely suitable, and 1 that it is completely unsuitable.
+In this csv file, there are three columns, one is the OSM id of the way that the information is for, and then the 
+other two are values about the walk and bikability. 
+
+There are a few rules that need to be taken into account for the csv file. Firstly, the first column must be the OSM id 
+of the way that the value(s) refers to. Secondly, you can have any number of additional columns, but the values need 
+to be between 0 and 1, with 0 indicating that the way is completely suitable, and 1 that it is completely unsuitable.
 
 > **_NOTE:_** Currently, there are some additional restrictions in the csv file that need to be taken into account, 
 > though they will be eased up in future releases as the feature becomes more stable:
@@ -248,9 +281,10 @@ between 0 and 1, with 0 indicating that the way is completely suitable, and 1 th
  
 OK, so now you know a little about the csv extended storage, it is time to put it to use. As you should make sure 
 that the OSM ids in the csv file correspond with OSM ids of the pbf file that you use to build the graphs, we have 
-provided an OSM pbf dile and corresponding walkability file for Glasgow which you can download from the resources 
-section. Once you have downloaded them, put them both in the `files` folder of the openrouteservice setup, and 
-delete any folders and data that are in the `graphs` folder. Your file structure should not look like the following:
+provided a csv file from NetAScore for Glasgow which map to the OSM pbf file that we used previously. You can get 
+the csv file from the same place as the pbf file. Once you have downloaded the csv file, put move it to the `files` 
+folder of the openrouteservice setup, and delete any folders and data that are in the `graphs` folder. Your file 
+structure should not look like the following:
 
 ```
 openrouteservice
@@ -259,7 +293,7 @@ openrouteservice
 │       ors-config.yml  
 └───elevation_cache
 └───files
-│       glasgow.osm.pbf
+│       glasgow-latest.osm.pbf
 │       glasgow_walkability_index.csv    
 └───graphs
 └───logs
@@ -274,15 +308,10 @@ section under profiles to be the following:
 
 ```yaml
       walking:
+        enabled: true
         ext_storages:
           csv:
             filepath: /home/ors/files/glasgow_walkability_index.csv
-```
-
-and the osm source file to be:
-
-```yaml
-    source_file: /home/ors/files/glasgow.osm.pbf
 ```
 
 Now all you need to do is stop openrouteservice if it is still running (`docker compose down`) and then start it up 
@@ -299,28 +328,31 @@ also pass in some additional parameters. This is where the column name is needed
   -d '{"coordinates":[[-4.3121, 55.8826],[-4.2915, 55.8427]],"instructions": false, "extra_info":["csv"],"options": {"profile_params": {"weightings": {"csv_column": "index_walk","csv_factor": 1.0}}}}'
 ```
 
+> **_NOTE:_** If you get any errors, make sure that you are using the correct file paths and that you delete the 
+> graphs folders before restarting the Docker container.
+
 The first addition is the `"extra_info":["csv"]`. This adds some extra information in the response from 
 openrouteservice that shows the values obtained from the csv storage for segments along the route (we will talk 
 about that shortly). The part that actually tells openrouteservice to use walkability in routing though is the 
 `"options": {"profile_params": {"weightings": {"csv_column": "index_walk","csv_factor": 1.0}}}}` part. Here we are 
-telling openrouteservice to use the csv_column called `index_walk` when calculating a route, and that we should 
+telling openrouteservice to use the `csv_column` called `index_walk` when calculating a route, and that we should 
 apply the maximum effect from it (the `1.0`). This means that when an edge in the graph is evaluated, the base value 
-from OSM is taken, then increased by the full factor of the walk index from the csv (that is why 0 in teh file is 
-seena s most suitable). In practice, that means if the base weight of the edge was 100, and it was from an OSM way 
-that had a walkability index value of 0.8, when we pass 1.0 as the csv_factor the end weight of the edge would be 
-180 (`100 + ((100 x 0.8) x 1.0)`). If we passed in 0.1 as the csv_factor, the end value would be 108 (`100 + ((100 x 
-0.8) x 0.1)`). This means that the lower the csv_factor value, the less the walkability factor has an effect on the 
-route generated.
+from OSM is taken (distance or travel time), then increased by the full factor of the walk index from the csv (that is 
+why 0 in the file is seen as most suitable). In practice, that means if the base weight of the edge was 100, and it 
+was from an OSM way that had a walkability index value of 0.8, when we pass 1.0 as the csv_factor the end weight of 
+the edge would be 180 (`100 + ((100 x 0.8) x 1.0)`). If we passed in 0.1 as the csv_factor, the end value would be 108 
+(`100 + ((100 x 0.8) x 0.1)`). This means that the lower the csv_factor value, the less the walkability factor has an 
+effect on the route generated.
 
 To look at differences between routes generated, you can either save the files as geojson and load them into a 
 visualiser, or copy the geojson response body and paste it into a websites such as https://geojson.io.
 
 As mentioned, another part of the returned route from the above example is the "extra information". As we requested 
-to receive csv data, alongside the route geometry we get some values stored in a two dimenstional array, which looks 
+to receive csv data, alongside the route geometry we get some values stored in a two dimensional array, which looks 
 something like the following:
 
 ```json
-{"extras":{"csv":{"values":[[0,1,49],[1,2,33],[2,5,53],[5,6,46], ... ]
+{"extras":{"csv":{"values":[[0,1,49],[1,2,33],[2,5,53],[5,6,46]]}}}
 ```
 
 These arrays of three numbers represent sections of the route that have a specific value that was obtained from the 
