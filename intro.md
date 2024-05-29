@@ -50,7 +50,7 @@ academic research and real-life technology.
 :class: organiser-profile-photo
 ```
 
-**Christian Werner** ...
+**Christian Werner** is a PhD researcher at the [Mobility Lab](https://mobilitylab.zgis.at/en/) research group at the **Department of Geoinformatics, [University of Salzburg](https://www.plus.ac.at/?lang=en)**. With an origin in digital media application development and design, he graduated in Applied Geoinformatics with a master thesis on geostatistical assessment of cyclist stress detected from physiological measurements. His research revolves around infrastructure suitability for active modes, morphology and spatial configuration of transport networks, and resulting systemic effects on sustainable mobility. He is interested in the development of methods to assess and optimize the interconnection between active mobility and public transport.
 
 <div style="clear: both"></div>
 
@@ -61,6 +61,7 @@ Adam Rousell
 
 
 Christian Werner
+[christian.werner@plus.ac.at](mailto:christian.werner@plus.ac.at)
 
 
 ```{image} ./img/heigit_logo.png
