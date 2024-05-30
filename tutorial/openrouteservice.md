@@ -262,7 +262,7 @@ additional weightings to edges in the graph which then affect how much each edge
 
 Firstly, lets take a quick look at the structure of a csv file that can be used in the storage:
 
-| osm_id | bike_index | walk_index |
+| osm_id | index_bike | index_walk |
 |--------|------------|------------|
 |672899942|0.165|0.647|
 |334525|0.873|0.811|
@@ -301,7 +301,7 @@ openrouteservice
 
 Now that the data is ready, take a look at what the headers of the csv file contain by using the command `head 
 files/glasgow_walkability_index.csv` - you will need to know the column name of the walkability index value for when 
-you query to get results. In our case, the column is called `walk_index`.
+you query to get results. In our case, the column is called `index_walk`.
 
 To make use of this data in the graph building, you need to modify the `ors-config.yml` file. Change the `walking` 
 section under profiles to be the following:
