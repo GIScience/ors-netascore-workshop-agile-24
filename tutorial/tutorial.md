@@ -8,11 +8,11 @@ particular, then that's fine.
 
 The sections of the tutorial are as follows:
 
-## [Installing and running a local instance of NetAScore](./netascore.md)
+## [Installing and running NetAScore](./netascore.md)
 In this part of the tutorial, you will be guided through the process of running NetAScore on your own machine. By 
 the end of it, you will have got an instance up and running, and used it to create bikability and walkability 
 information for Glasgow. For those wanting to get more in depth, you will also be instructed as to how to do the 
-same for a region that you define yourself, either by name or through providing your own OSM pbf file.
+same for a region that you define yourself, either by place name or through providing your own OSM input file.
 
 ## [Installing and running a local instance of openrouteservice](./openrouteservice.md)
 For this part of the tutorial, the goal is to have your very own instance of openrouteservice running on your 
@@ -29,8 +29,8 @@ district) are walkable or not.
 
 ## [Integrating results from NetAScore into openrouteservice](./integration.md)
 This part of the tutorial is for those people who have managed to get openrouteservice and NetAScore running on 
-there local machines, and would like to bring the two together. You will be guided through the process of 
-downloading OSM data and then putting this into both NeAScore and openrouteservice. You will then be guided through 
-the process of converting data obtained from NetAScore into a format compatible with openrouteservice, before 
+their local machines, and would like to bring the two together. You will be guided through the process of 
+downloading OSM data and then putting this into both NeAScore and openrouteservice. 
+We further guide you through converting the NetAScore output into a format compatible with openrouteservice, before 
 integrating this data into openrouteservice so that you can do your own routing processes that take into account 
-walkability.
+walkability and bikeability metrics.
