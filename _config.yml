@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: openrouteservice and NetAScore tutorial - AGILE 2024
-author: HeiGIT gGmbH; GIScience Research Group, Heidelberg University;
+author: HeiGIT gGmbH; GIScience Research Group, Heidelberg University; Mobility Lab Research Group, Department of Geoinformatics, University of Salzburg
 logo: img/openrouteservice.png
 
 # Force re-execution of notebooks on each build.
