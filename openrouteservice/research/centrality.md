@@ -86,10 +86,3 @@ Betweenness centrality is a measure that quantifies the importance or influence 
 
 
 ![idai_centrality](../../img/research_usecases/centrality/idai_centrality.png)
-
-
-By the way there is a Workshop at the GIScience Conference this year.
-More info on the workshop: [giscience.github.io/giscience2023/](https://giscience.github.io/giscience2023/)
-
-and on the conference:
-[giscience2023.github.io/pages/workshop](https://giscience2023.github.io/pages/workshop.html)
