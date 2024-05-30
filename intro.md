@@ -1,13 +1,13 @@
 # Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability
 
-Welcome to this tutorial at AGILE 2024 about walk and bikeability, and how you can use some open source tools and 
+Welcome to this tutorial at AGILE 2024 about walkability and bikeability, and how you can use some open source tools and 
 data to assess this information. 
 
 This tutorial is split into several parts. In the sections [OpenStreetMap](./openstreetmap/intro.md), 
 [openrouteservice](./openrouteservice/01_what.md) and [NetAScore](./netascore/intro.md), you can find some general 
 information about the data and tools that we will be using. The practical part of the tutorial can be found in the 
 [Tutorial](./tutorial/tutorial.md) section, which is made up of guided tutorials on how to use these tools and data in 
-the context of walk and bikeability. Feel free to tackle these individual tutorials in any order, though the 
+the context of walkability and bikeability. Feel free to tackle these individual tutorials in any order, though the 
 integration one assumes that you have completed at least the [NetAScore](./tutorial/netascore.md) and 
 [openrouteservice](./tutorial/openrouteservice.md) sections.
 
@@ -19,7 +19,7 @@ about the tools used.
 | Time 	    | Topic                            	                                                |
 |-----------|-----------------------------------------------------------------------------------|
 | 16:00   	 | Introduction to the tutorial                   	                                  |
-| 16:05   	 | What is walk and bikeability, NetaScore, and openrouteservice                   	 |
+| 16:05   	 | What is walk and bikeability, NetAScore, and openrouteservice                   	 |
 | 16:30   	 | Hands on tutorial                   	                                             |
 | 17:45   	 | Wrap up                   	                                                       |
 | 18:00   	 | End of the session                   	                                            |
@@ -50,7 +50,7 @@ academic research and real-life technology.
 :class: organiser-profile-photo
 ```
 
-**Christian Werner** is a PhD researcher at the [Mobility Lab](https://mobilitylab.zgis.at/en/) research group at the **Department of Geoinformatics, [University of Salzburg](https://www.plus.ac.at/?lang=en)**. With an origin in digital media application development and design, he graduated in Applied Geoinformatics with a master thesis on geostatistical assessment of cyclist stress detected from physiological measurements. His research revolves around infrastructure suitability for active modes, morphology and spatial configuration of transport networks, and resulting systemic effects on sustainable mobility. He is interested in the development of methods to assess and optimize the interconnection between active mobility and public transport.
+**Christian Werner** is a PhD researcher at the [Mobility Lab](https://mobilitylab.zgis.at/en/) research group at the **Department of Geoinformatics, [University of Salzburg](https://www.plus.ac.at/?lang=en)**. With an origin in digital media application development and design, he graduated in Applied Geoinformatics with a master thesis on geostatistical assessment of cyclist stress detected from physiological measurements. His research revolves around infrastructure suitability for active modes, morphology and spatial configuration of transport networks, and resulting systemic effects on sustainable mobility. He is interested in the development of methods to assess and optimize network connectivity for active modes, as well as the interconnection between active mobility and public transport.
 
 <div style="clear: both"></div>
 
