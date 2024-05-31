@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Initialization &#8212; openrouteservice and NetAScore tutorial - AGILE 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=977f57fc" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/assessment';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">openrouteservice and NetAScore tutorial - AGILE 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial content</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources for the tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netascore.html">NetAScore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice.html">Openrouteservice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qgis.html">QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Combining the services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OpenStreetMap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openstreetmap/intro.html">What is OpenStreetMap?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NetAScore</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../netascore/intro.html">What is NetAScore?</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">openrouteservice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/01_what.html">What is openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/02_how.html">How to use openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/03_ecosystem.html">How to integrate openrouteservice?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Research and usecases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/health_access.html">Accessibility to healthcare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/disaster_portal.html">HeiGIT Disaster Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/green_routing.html">Healthy Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/research/centrality.html">Network analysis - Centrality</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24/issues/new?title=Issue%20on%20page%20%2Ftutorial/assessment.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/assessment.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Initialization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Initialization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-new-virtual-environment-with-all-necessary-dependencies">2. Setup new virtual environment with all necessary dependencies</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-pip">With pip</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-mamba-poetry">With Mamba + Poetry</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data">3. Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osm-file">OSM file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-data">CSV data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#check-engine-vs-endpoint-profile">4. Check engine vs. endpoint profile</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-configuration">Docker configuration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-local-ors-instance">Build local ORS instance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#query-routes">Query routes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#address-to-query-local-ors-api">Address to query local ORS API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-extra-info">Interpretation of extra info</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="initialization">
+<h1>1. Initialization<a class="headerlink" href="#initialization" title="Link to this heading">#</a></h1>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h2>
+<p>Follow the <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/running-with-docker">manual/documentation</a> to create the folder structure and files needed for a local ORS docker instance:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>ors
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>ors/ors-docker/config<span class="w"> </span>ors/ors-docker/elevation_cache<span class="w"> </span>ors/ors-docker/files<span class="w"> </span>ors/ors-docker/graphs<span class="w"> </span>ors/ors-docker/logs
+
+wget<span class="w"> </span>https://github.com/GIScience/openrouteservice/releases/download/v8.0.0/docker-compose.yml<span class="w"> </span>-O<span class="w"> </span>ors/docker-compose.yml
+</pre></div>
+</div>
+</section>
+</section>
+<section id="setup-new-virtual-environment-with-all-necessary-dependencies">
+<h1>2. Setup new virtual environment with all necessary dependencies<a class="headerlink" href="#setup-new-virtual-environment-with-all-necessary-dependencies" title="Link to this heading">#</a></h1>
+<p>It is advised to create a new virtual environment and install the necessary dependencies using a given file.</p>
+<section id="with-pip">
+<h2>With pip<a class="headerlink" href="#with-pip" title="Link to this heading">#</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>csv-ors-builder
+
+<span class="nb">source</span><span class="w"> </span>csv-ors-builder/bin/activate
+
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<p>After this, you should be done.</p>
+</section>
+<section id="with-mamba-poetry">
+<h2>With Mamba + Poetry<a class="headerlink" href="#with-mamba-poetry" title="Link to this heading">#</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+
+mamba<span class="w"> </span>activate<span class="w"> </span>csv-routing
+
+poetry<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Poetry will detect and respect an existing virtual environment that has been externally activated and will install the dependencies into that environment.</p>
+<p>To update the packages to their latest suitable versions (and the poetry.lock file), run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>update
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data">
+<h1>3. Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h1>
+<p>Put both of the following files in <code class="docutils literal notranslate"><span class="pre">ors/ors-docker/files</span></code>.</p>
+<section id="osm-file">
+<h2>OSM file<a class="headerlink" href="#osm-file" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/data#osm-data">OSM file</a> to build the graph on. File formats can be looked up <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/configuration/ors/engine/">here</a> under ‘source_file’. The OSM file should include the OSM ids included in the following CSV file.</p>
+</section>
+<section id="csv-data">
+<h2>CSV data<a class="headerlink" href="#csv-data" title="Link to this heading">#</a></h2>
+<p>The additional data you want to integrate in the ORS route calculation. Should be comma-separated, including at least one ‘osm_id’ column and a column with numeric data between 0 and 1</p>
+<p><strong>Notice:</strong> the algorithm uses a <strong>malus system</strong> for the value range 0 to 1, which means higher values are worse and lower values are better. The algorithm calculates costs and routes based on this.</p>
+<p>If you want it the opposite way (<strong>bonus system</strong>), you have to recalculate your values in the CSV file. We provide a simple preprocessing tool taking care of this, which you can execute with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>src/csvfile_preprocessing.py<span class="w"> </span>path-to-csv-file
+</pre></div>
+</div>
+</section>
+</section>
+<section id="check-engine-vs-endpoint-profile">
+<h1>4. Check engine vs. endpoint profile<a class="headerlink" href="#check-engine-vs-endpoint-profile" title="Link to this heading">#</a></h1>
+<p><strong>Attention!</strong> There are two profiles, one for the engine during the graph building, and one for the endpoint where you send requests to.</p>
+<ul class="simple">
+<li><p>Check your <strong>engine</strong> profile <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/configuration/ors/engine/profiles">here</a></p></li>
+<li><p>Check your <strong>endpoint</strong> profile <a class="reference external" href="https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/extra-info/#extra-info-availability">here</a></p></li>
+</ul>
+<p>In the following configuration, the <strong>engine profile</strong> is used. Afterwards, when sending requests, you should switch to the according endpoint profile.</p>
+</section>
+<section id="docker-configuration">
+<h1>Docker configuration<a class="headerlink" href="#docker-configuration" title="Link to this heading">#</a></h1>
+<p>The only thing you have to change is the <code class="docutils literal notranslate"><span class="pre">ors/docker-compose.yml</span></code> file which has been downloaded before. Add the following configs at the according lines:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ors-app</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your custom container name&gt;</span>
+<span class="w">        </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># should be the path to source file specified above</span>
+<span class="w">            </span><span class="nt">ors.engine.source_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/files/&lt;your custom osm file.pbf&gt;</span>
+<span class="w">            </span><span class="c1"># adjust to your engine profile</span>
+<span class="w">            </span><span class="nt">ors.engine.profiles.&lt;your engine profile&gt;.enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">            </span><span class="c1"># add path to csv data</span>
+<span class="w">            </span><span class="nt">ors.engine.profiles.&lt;your engine profile&gt;.ext_storages.csv.filepath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/files/&lt;your csv data.csv&gt;</span>
+<span class="w">            </span><span class="c1"># keep this and don&#39;t change</span>
+<span class="w">            </span><span class="nt">ors.engine.graphs_root_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/graphs</span>
+<span class="w">            </span><span class="nt">ors.engine.elevation.cache_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/elevation_cache</span>
+</pre></div>
+</div>
+<p>The environment variables could also be <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/running-with-docker#configure">included</a> in the custom-ors-config.yml, but for a simple addition of csv data to the graph, this minimal setup is enough. Additional options are explained <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/configuration/#file-content">here</a>.</p>
+</section>
+<section id="build-local-ors-instance">
+<h1>Build local ORS instance<a class="headerlink" href="#build-local-ors-instance" title="Link to this heading">#</a></h1>
+<p>To build the image and create the container, use this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>ors/docker-compose.yml<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+<p>The graph is now build. To see when the ORS instance is ready to take requests (it takes around 5 minutes to build the graph for Austria), use this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8080/ors/v2/health<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.status&#39;</span>
+</pre></div>
+</div>
+<p>When it changes from <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">ready</span></code> to <code class="docutils literal notranslate"><span class="pre">ready</span></code>, you can start sending requests.</p>
+</section>
+<section id="query-routes">
+<h1>Query routes<a class="headerlink" href="#query-routes" title="Link to this heading">#</a></h1>
+<p>The basic functionality to request routes from ORS is explained <a class="reference external" href="https://openrouteservice.org/dev/#/api-docs/v2/directions/%7Bprofile%7D/geojson/post">here</a>.</p>
+<p>For a more elaborate example, take a look into these notebooks:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#./src/routing_validator.ipynb"><span class="xref myst">routing_validator.ipynb</span></a>: validate if the routing is working by requesting n random routes and doing a simple evaluation</p></li>
+<li><p><a class="reference internal" href="#./src/compare_routes.ipynb"><span class="xref myst">compare_routes.ipynb</span></a>: query single routes in an interactive map and get both the default and the csv-optimized route with additional statistics</p></li>
+</ul>
+<section id="address-to-query-local-ors-api">
+<h2>Address to query local ORS API<a class="headerlink" href="#address-to-query-local-ors-api" title="Link to this heading">#</a></h2>
+<p>Because you want to use a local ORS instance, you have to adjust the API address to a localhost address. For this, replace <code class="docutils literal notranslate"><span class="pre">https://api.openrouteservice.org</span></code> with <code class="docutils literal notranslate"><span class="pre">http://localhost:&lt;port&gt;/ors/</span></code>.</p>
+<p>The port is specified in the <a class="reference internal" href="#./ors/docker-compose.yml"><span class="xref myst">docker-compose.yml</span></a> file under <code class="docutils literal notranslate"><span class="pre">services.ors-app.ports</span></code>, the one where the ORS API is exposed (default port 8080).</p>
+<p>So the same endpoint for the online and local ORS API looks like this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>https://api.openrouteservice.org/v2/directions/&lt;your<span class="w"> </span>endpoint<span class="w"> </span>profile&gt;/geojson
+
+http://localhost:8080/ors/v2/directions/&lt;your<span class="w"> </span>endpoint<span class="w"> </span>profile&gt;/geojson
+</pre></div>
+</div>
+</section>
+<section id="interpretation-of-extra-info">
+<h2>Interpretation of extra info<a class="headerlink" href="#interpretation-of-extra-info" title="Link to this heading">#</a></h2>
+<p>This is explained <a class="reference external" href="https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/extra-info/#extra-info">here</a>.</p>
+<p>Notice the used <a class="reference internal" href="#csv-data"><span class="xref myst">malus system</span></a> when calculating the routes with the CSV values as cost calculation basis!</p>
+</section>
+</section>
+<section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
+<p><strong>Error:</strong> ‘… external connectivity on endpoint … proxy listen tcp4 0.0.0.0:xxxx bind:address already in use’<br />
+<strong>Solution:</strong> either close port connection (kill process) or change port according to <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/running-with-docker#avoid-files-owned-by-root">here</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Initialization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-new-virtual-environment-with-all-necessary-dependencies">2. Setup new virtual environment with all necessary dependencies</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-pip">With pip</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-mamba-poetry">With Mamba + Poetry</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data">3. Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osm-file">OSM file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-data">CSV data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#check-engine-vs-endpoint-profile">4. Check engine vs. endpoint profile</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-configuration">Docker configuration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-local-ors-instance">Build local ORS instance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#query-routes">Query routes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#address-to-query-local-ors-api">Address to query local ORS API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-extra-info">Interpretation of extra info</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By HeiGIT gGmbH; GIScience Research Group, Heidelberg University; Mobility Lab Research Group, Department of Geoinformatics, University of Salzburg
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
