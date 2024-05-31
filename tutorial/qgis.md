@@ -41,7 +41,7 @@ for the openrouteservice plugin, but search and select the "QuickMapServices" pl
 
 Before you can use the ORS Tools plugin properly, you need to do some configuration to allow it to communicate with 
 an openrouteservice instance. In our case, we have setup a special public instance that can be accessed with the API 
-key which can be downloaded from the resources section of this tutorial.
+key which can be downloaded from the shared web drive listed in the [resources](./resources.md) section of this tutorial.
 
 To configure a "provider", navigate to the Web -> ORS Tools -> Provider Settings menu.
 
@@ -51,7 +51,7 @@ This will open up the Provider Settings window. We need to add a new provider by
 left corner) which will then prompt you for a name. Let's call this provider "agile conference openrouteservice". 
 After clicking "OK" you will now see the Provider Settings window again, but this time showing the text boxes to 
 enter information for the new provider. For the Base URL, you need to enter `https://api.openrouteservice.org/agile-conference` 
-and the API key that you can find in the resources section. You can leave the Request timeout as the default value 
+and the API key that you can download from the shared web drive. You can leave the Request timeout as the default value 
 of 60. Once you have entered this information, click on Save to store it ready for use when you come to doing some 
 routing. 
 
@@ -84,16 +84,16 @@ openrouteservice. Next is the provider area where you select where you want to s
 earlier stage of this tutorial, you already added a new provider which sends requests to the special routing 
 instance setup for this tutorial. By default, the standard public openrouteservice provider is selected, but you can 
 choose another one that has been configured by clicking on the current provider to bring up a list. So let's go 
-ahead and already select the "agile conference openrouteservice provider". Next up is where you select routing 
-options. As a very first example, we will stick with the "Advanced Directions" (we will sue the "Batch Jobs" area in 
+ahead and already select the `agile conference openrouteservice` provider. Next up is where you select routing 
+options. As a very first example, we will stick with the "Advanced Directions" (we will use the "Batch Jobs" area in 
 a later step). The next drop downs allow you to select a routing profile, and the preferred type of route. In the 
 scotland instance we have setup, there are only foot-walking and cycling-regular available, so let's select 
 "cycling-regular" and the preference to "shortest". This will add information to the request sent to the special 
-instance that tells it to to a normal bike route, and focus on getting the shortest route possible.
+instance that tells it to do a normal bike route, and focus on getting the shortest route possible.
 
 We now have the basic settings, so let's select our start and end points for the route. For this example, let's do a 
 route from the university to the main train station in Glasgow. To add the points, click on the green "+" button 
-which will hide the plugin window and move you back to the main QGIS window. To choose you points, click roughly 
+which will hide the plugin window and move you back to the main QGIS window. To choose your points, click roughly 
 where the university is to set the start point, and then double click around the train station to set the end point 
 (if you single click, it will add a via point rather than specifying the end point). The following image shows 
 roughly where to place these points:
@@ -104,7 +104,7 @@ After you double click to set the end point, you will be returned to the ORS Too
 vertices in the list. If you accidentally added a via point or got another point in the wrong locations, you can 
 delete it by selecting the point in the list, and then clicking the red "x" button. If you have not selected a point 
 in the list, clicking this button will clear all the points in the list. To make things easier in later stages, you 
-should click on the "Save Points" icon (under the "Delete Point" button) which will add the points to QGIS as a 
+should click on the "Save Points" icon (below the "Delete Point" button) which will add the points to QGIS as a 
 point layer called "Vertices".
 
 ![orstools plugin routing basic settings](../img/tutorial/qgis/orstools-basic-filled.png)
@@ -138,11 +138,11 @@ From these buttons, click on "Isochrones from Point" to open a second ORS Tools 
 doing reachability analysis. In this window, select the "agile conference openrouteservice" as the provider, and 
 "foot-walking" as Travel mode. Click on the three dots by the "Input point from map canvas" entry and then go to the 
 main QGIS window where you can click on the map to set the starting point for the reachability analysis. For us, 
-let's again click on the main train station in Glasgow. This will add the coordinates to the text box under teh 
+let's again click on the main train station in Glasgow. This will add the coordinates to the text box under the 
 "Input point". Next, make sure that "Time" is selected under Dimension (so that we do reachability based on time) 
 and then enter the duration of travel in the "comma seperated ranges" box. This text fields accepts multiple comma 
 seperated value that represent either time in minutes, or distance in metres. We want to see how far people can get 
-from the station in 10, 20 and 30 minutes, so enter "10,20,30" in this box. Leave location type and advanced options 
+from the station in 10, 20 and 30 minutes, so enter `10,20,30` in this box. Leave location type and advanced options 
 as is, and then click on "Run". 
 
 ![orstool reachability settings](../img/tutorial/qgis/orstools_batch_reachability_settings.png)
@@ -156,17 +156,17 @@ minutes by foot from the train station.
 
 ### 5. Assessing bikability
 
-Int he final part of this tutorial section, we will use the ORS Tools plugin to derive some information about the  
+In the final part of this tutorial section, we will use the ORS Tools plugin to derive some information about the  
 bikability of routes. 
 
 In the special instance of openrouteservice provided for this tutorial, bikability has been included from NetAScore 
-for all ways in Scotland. As discussed in the "openrouteservice" part of this tutorial, this information is stored 
-on the routing graph and can be used to alter how much a particular way is avoided in routing. For this example, we 
-will stick with the route between the university and main train station in Glasgow.
+for all ways in Scotland. As discussed in the "[openrouteservice](./openrouteservice.md)" part of this tutorial, this 
+information is stored on the routing graph and can be used to alter how much a particular way is avoided in routing. 
+For this example, we will stick with the route between the university and main train station in Glasgow.
 
-To start with open up the ORS Tools plugin and navigate to teh Batch Jobs area. Once there, select the "Points (1 
-layer)" button from teh Directions section to open up the advanced routing window. There are a number of settings 
-here that you need to change to be able to do routing that takes into account bikability, but lets start by setting 
+To start with open up the ORS Tools plugin and navigate to the Batch Jobs area. Once there, select the "Points (1 
+layer)" button from the Directions section to open up the advanced routing window. There are a number of settings 
+here that you need to change to be able to do routing that takes into account bikability, but let's start by setting 
 the provider to be the "agile conference openrouteservice", Travel Mode to "cycling-regular" and Travel preference 
 to be "shortest". For "Input", click the box and select the layer that we earlier created by saving the start and 
 end points form the basic routing generation (it should be called "vertices" unless you changed it). That is enough 
@@ -193,14 +193,14 @@ there being one entry containing information about the route, there are a number
 "CSV". These entries represent segments of the route that have different values from the csv extra info, in our case 
 these values represent the bikability of the route. One important thing to note here is that the numbers go from 0 
 to 100, where 100 represents parts of the route that are not bikable, and 0 represents those that are very bikable. 
-To visualise this information, let's change the symbology of the layer by right clicking on teh layer in the Layers 
+To visualise this information, let's change the symbology of the layer by right clicking on the layer in the Layers 
 panel and selecting "Properties". Navigate to the "Symbology" tab, and select "Graduated" from the drop down at the 
 top of the window. Now select "CSV" as the "Value" and choose a suitable colour ramp. As we know that 0 is bikable 
-and 100 is not bikable, you could select the "Spectral" colour ramp, adn then choose to invert it so that higher 
+and 100 is not bikable, you could select the "Spectral" colour ramp, and then choose to invert it so that higher 
 values are seen as red. Now select an "Equal Interval" Mode with 5 Classes, and click the "Classify" button. This 
 will create 5 equally sized classes that will then be used to show the information.
 
-![bikability route symbology settings](../img/tutorial/qgis/bikability_0_symbology.png).
+![bikability route symbology settings](../img/tutorial/qgis/bikability_0_symbology.png)
 
 Once you have changed these settings, click "OK" to change the symbology of the route. If the lines are too small to 
 see well, you can go back to the symbology settings, click on the "Symbol" area near the top of the window, and 
@@ -210,7 +210,7 @@ opacity. Now you are able to see the bikability of the sections of the route.
 
 ![bikability route](../img/tutorial/qgis/bikability_0_route.png)
 
-Now what does a route look like where we tell it that we want a more bikable route. To see this, follow the above 
+Now what does a route look like where we tell it that we want a more bikable route? To see this, follow the above 
 steps, but this time set the Csv Factor value to be 1. What we see in the resultant route is one that avoids the 
 areas in the original route that were seen as low bikability.
 
@@ -218,14 +218,13 @@ areas in the original route that were seen as low bikability.
 
 If we want to see the difference in length and travel time, we need to rerun the above steps, but **not** select the 
 csv option in the Extra Info area. This will result in the route being returned as a single line with the duration 
-and length attributes attached. When we look at the two routes, we see that the route that doesn't take into account 
+and length attributes attached. When we look at the two routes, for our route (the routes can vary significantly 
+based on the exact position of the start and end points), we see that the route that doesn't take into account 
 bikability is 3.2km long and takes approximately 14 minutes to traverse, whereas the more bikable route is 3.4km 
 long and takes almost 15 minutes. Though over these shorter distances, it may be preferable to take the slightly 
 longer route that is more bikable, in others, the difference might be too great.
 
-
-
-Do some analysis by multiplying segment length by bikability and then getting the average for each route
+![difference between routes](../img/tutorial/qgis/difference_between_routes.png)
 
 
 ## Part 2: Visualising bikeability and walkability for Glasgow City in QGIS
