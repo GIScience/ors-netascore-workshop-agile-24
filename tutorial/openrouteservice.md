@@ -153,7 +153,7 @@ default configuration, the only profile active is the car profile. We will cover
 the next section.
 
 A great place to start for building queries is the openrouteservice interactive API docs, which you can find at 
-https://openrouteservice.org/dev/#/api-docs. On there, you can construct queries using different parameters (note 
+[https://openrouteservice.org/dev/#/api-docs](https://openrouteservice.org/dev/#/api-docs). On there, you can construct queries using different parameters (note 
 that not all are available in the default setup), and then if you click on the `Example code` button, you will be 
 given the curl request for that combination. You can then copy that and use it as the basis for the request against 
 your local instance. The main thing that will need changing though is the base url as by default it points to the 
@@ -345,7 +345,7 @@ the edge would be 180 (`100 + ((100 x 0.8) x 1.0)`). If we passed in 0.1 as the 
 effect on the route generated.
 
 To look at differences between routes generated, you can either save the files as geojson and load them into a 
-visualiser, or copy the geojson response body and paste it into a websites such as https://geojson.io. It may be the 
+visualiser, or copy the geojson response body and paste it into a websites such as [https://geojson.io](https://geojson.io). It may be the 
 case that the routes are very similar, or even identical, but that does not mean that the walkability isn't being 
 taken into account, it just means that the original route was actually already pretty walkable in comparison to 
 alternatives. 
@@ -371,7 +371,7 @@ lower value means that a segment is **more** suitable!
 That pretty much covers the basics of setting up openrouteservice on your own system and then querying it to get 
 some routing results. At this point, feel free to keep playing around with different settings in the configuration 
 file, or even installing openrouteservice through different methods. You can find general information about 
-installing on the documentation at https://giscience.github.io/openrouteservice/run-instance/. There you can also 
+installing on the documentation at [https://giscience.github.io/openrouteservice/run-instance/](https://giscience.github.io/openrouteservice/run-instance/). There you can also 
 find out about what different configuration parameters do. One good thing to do would be to use the above steps to 
 activate the bike profile with the csv extended storage so that you can play around with the bikability index 
 routing. The steps would be pretty much the same, the only difference would be that you would alter the `bike-regular` 
