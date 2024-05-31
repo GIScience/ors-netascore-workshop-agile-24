@@ -282,9 +282,9 @@ to be between 0 and 1, with 0 indicating that the way is completely suitable, an
 OK, so now you know a little about the csv extended storage, it is time to put it to use. As you should make sure 
 that the OSM ids in the csv file correspond with OSM ids of the pbf file that you use to build the graphs, we have 
 provided a csv file from NetAScore for Glasgow which map to the OSM pbf file that we used previously. You can get 
-the csv file from the same place as the pbf file. Once you have downloaded the csv file, put move it to the `files` 
-folder of the openrouteservice setup, and delete any folders and data that are in the `graphs` folder. Your file 
-structure should not look like the following:
+the csv file (named `netascore_glasgow_converted.csv` from the same place as the pbf file. Once you have downloaded the 
+csv file, move it to the `files` folder of the openrouteservice setup, and delete any folders and data that are in the 
+`graphs` folder. Your file structure should not look like the following:
 
 ```
 openrouteservice
@@ -294,13 +294,13 @@ openrouteservice
 └───elevation_cache
 └───files
 │       glasgow-latest.osm.pbf
-│       glasgow_walkability_index.csv    
+│       netascore_glasgow_converted.csv    
 └───graphs
 └───logs
 ```
 
 Now that the data is ready, take a look at what the headers of the csv file contain by using the command `head 
-files/glasgow_walkability_index.csv` - you will need to know the column name of the walkability index value for when 
+files/netascore_glasgow_converted.csv` - you will need to know the column name of the walkability index value for when 
 you query to get results. In our case, the column is called `index_walk`.
 
 To make use of this data in the graph building, you need to modify the `ors-config.yml` file. Change the `walking` 
@@ -311,7 +311,7 @@ section under profiles to be the following:
         enabled: true
         ext_storages:
           csv:
-            filepath: /home/ors/files/glasgow_walkability_index.csv
+            filepath: /home/ors/files/netascore_glasgow_converted.csv
 ```
 
 Now all you need to do is stop openrouteservice if it is still running (`docker compose down`) and then start it up 
@@ -345,7 +345,10 @@ the edge would be 180 (`100 + ((100 x 0.8) x 1.0)`). If we passed in 0.1 as the 
 effect on the route generated.
 
 To look at differences between routes generated, you can either save the files as geojson and load them into a 
-visualiser, or copy the geojson response body and paste it into a websites such as https://geojson.io.
+visualiser, or copy the geojson response body and paste it into a websites such as https://geojson.io. It may be the 
+case that the routes are very similar, or even identical, but that does not mean that the walkability isn't being 
+taken into account, it just means that the original route was actually already pretty walkable in comparison to 
+alternatives. 
 
 As mentioned, another part of the returned route from the above example is the "extra information". As we requested 
 to receive csv data, alongside the route geometry we get some values stored in a two dimensional array, which looks 
@@ -369,7 +372,20 @@ That pretty much covers the basics of setting up openrouteservice on your own sy
 some routing results. At this point, feel free to keep playing around with different settings in the configuration 
 file, or even installing openrouteservice through different methods. You can find general information about 
 installing on the documentation at https://giscience.github.io/openrouteservice/run-instance/. There you can also 
-find out about what different configuration parameters do.
+find out about what different configuration parameters do. One good thing to do would be to use the above steps to 
+activate the bike profile with the csv extended storage so that you can play around with the bikability index 
+routing. The steps would be pretty much the same, the only difference would be that you would alter the `bike-regular` 
+area in the `ors-config.yml` file rather than the `walking` section, and then use `index_bike` rather than 
+`index_walk` in your 
+requests:
+
+```yaml
+      bike-regular:
+         enabled: true
+         ext_storages:
+           csv:
+             filepath: /home/ors/files/netascore_glasgow_converted.csv
+```
 
 
 
