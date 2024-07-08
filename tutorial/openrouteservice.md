@@ -11,10 +11,17 @@ you can follow the guides provided by Docker at [https://docs.docker.com/engine/
 
 The very first thing that you need to get openrouteservice running is to get the Docker Compose file. You can create 
 this yourself, but the recommended method is to download one that has been automatically created for the latest 
-version of openrouteservice. This file is available in the Assets part of the latest release page ([https://github.com/GIScience/openrouteservice/releases/tag/v8.0.1](https://github.com/GIScience/openrouteservice/releases/tag/v8.0.1)). 
+version of openrouteservice. This file is available in the Assets part of the latest release page ([https://github.com/GIScience/openrouteservice/releases/tag/v8.1.0](https://github.com/GIScience/openrouteservice/releases/tag/v8.1.0)). 
 Whilst you are there, it is also a good idea to download the configuration file `ors-config.yaml`. Openrouteservice can 
 have settings applied through this configuration file, through environment variables or via parameters in the docker 
 compose file, but in this tutorial we will only work with the yaml configuration.
+
+Use these links below to download the files. Updae the version number in the URL if you want to have the latest release. 
+
+```
+wget https://github.com/GIScience/openrouteservice/releases/download/v8.1.0/docker-compose.yml
+wget https://github.com/GIScience/openrouteservice/releases/download/v8.1.0/ors-config.yml
+```
 
 You should also download some OSM data that you can use in your local instance. One thing to keep in mind when 
 choosing the area you want ot use is how much data is there. The more data there is, the more RAM and time needed 
@@ -40,6 +47,7 @@ openrouteservice
 │       ors-config.yml  
 └───elevation_cache
 └───files
+|       glasgow-latest.osm.pbf
 └───graphs
 └───logs
 ```
@@ -86,9 +94,30 @@ volumes:  # Mount relative directories. ONLY for local container runtime. To swi
 
 Next, we may need to edit the amount of RAM allocated. Again, the minimum amount of RAM is generally at least twice 
 the size of the pbf file. You change this with the `XMS` and `XMX` properties (minimum and maximum size of the Java 
-heap respectively). As the glasgow pbf file is less than 10MB, we can leave these values as the default (we could 
+heap respectively) under `JAVA OPTS` in the `environment` section of the `docker-compose.yml` (see code below). As the glasgow pbf file is less than 10MB, we can leave these values as the default (we could 
 even reduce them if we wanted). Once you have modified these parts of the docker-compose file, you are ready to move on 
 to modifying the configuration of openrouteservice itself.
+
+The code below is an excerpt of the docker-compose.yml files 
+
+```
+environment:
+  REBUILD_GRAPHS: False  # Set to True to rebuild graphs on container start.
+  CONTAINER_LOG_LEVEL: INFO  # Log level for the container. Possible values: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  # If you don't want the default ors-config.yml you can specify a custom file name, that should match the file in
+  # your 'config' volume mount.
+  #ORS_CONFIG_LOCATION: /home/ors/config/my-ors-config.yml  # Location of your ORS configuration file in the docker container
+
+  # ------------------ JAVA OPTS ------------------ #
+  # Configure the memory settings for JAVA or pass additional opts
+  # Fore more available ENV properties see Prepare CATALINA_OPTS and JAVA_OPTS
+  # in https://github.com/GIScience/openrouteservice/blob/main/docker-entrypoint.sh
+  XMS: 1g  # start RAM assigned to java
+  XMX: 2g  # max RAM assigned to java. Rule of Thumb: <PBF-size> * <profiles> * 2
+  # Example: 1.5 GB pbf size, two profiles (car and foot-walking)
+  # -> 1.5 * 2 * 2 = 6. Set xmx to be AT LEAST `-Xmx6g`
+  ADDITIONAL_JAVA_OPTS: ""  # further options you want to pass to the java command
+```
 
 Configuration of openrouteservice is handled via the `ors-config.yml` file (at least in this tutorial). If you take a 
 look 
@@ -101,6 +130,12 @@ match. So in our case, we have the `glasgow-latest.osm.pbf` file inside the `fil
 property in the config file to be `source_file: /home/ors/files/glasgow-latest.osm.pbf`. The important thing to note 
 here is that the path is for the file **inside of the container**, hence why use the `/home/ors/files` rather than the 
 path that is on our local machine.
+
+```yaml
+#  ##### ORS engine settings #####
+  engine:
+    source_file: /home/ors/files/glasgow-latest.osm.pbf
+```
 
 Once you have changed that setting, you are good to go to build your first openrouteservice instance! 
 
