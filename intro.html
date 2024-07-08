@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability &#8212; openrouteservice and NetAScore tutorial - AGILE 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="tutorial/tutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">openrouteservice and NetAScore tutorial - AGILE 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial content</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial/tutorial.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/resources.html">Resources for the tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/netascore.html">NetAScore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/openrouteservice.html">Openrouteservice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/qgis.html">QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/integration.html">Combining the services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OpenStreetMap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="openstreetmap/intro.html">What is OpenStreetMap?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NetAScore</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="netascore/intro.html">What is NetAScore?</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">openrouteservice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/01_what.html">What is openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/02_how.html">How to use openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/03_ecosystem.html">How to integrate openrouteservice?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Research and usecases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/usecases/health_access.html">Accessibility to healthcare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/usecases/disaster_portal.html">HeiGIT Disaster Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/usecases/green_routing.html">Healthy Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice/research/centrality.html">Network analysis - Centrality</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agenda-for-today">Agenda for today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-are-we">Who are we?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="open-data-and-methods-for-assessing-active-mobility-options-routing-in-the-context-of-bikeability-and-walkability">
+<h1>Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability<a class="headerlink" href="#open-data-and-methods-for-assessing-active-mobility-options-routing-in-the-context-of-bikeability-and-walkability" title="Permalink to this heading">#</a></h1>
+<p>Welcome to this tutorial at AGILE 2024 about walkability and bikeability, and how you can use some open source tools and
+data to assess this information.</p>
+<p>This tutorial is split into several parts. In the sections <a class="reference internal" href="openstreetmap/intro.html"><span class="doc std std-doc">OpenStreetMap</span></a>,
+<a class="reference internal" href="openrouteservice/01_what.html"><span class="doc std std-doc">openrouteservice</span></a> and <a class="reference internal" href="netascore/intro.html"><span class="doc std std-doc">NetAScore</span></a>, you can find some general
+information about the data and tools that we will be using. The practical part of the tutorial can be found in the
+<a class="reference internal" href="tutorial/tutorial.html"><span class="doc std std-doc">Tutorial</span></a> section, which is made up of guided tutorials on how to use these tools and data in
+the context of walkability and bikeability. Feel free to tackle these individual tutorials in any order, though the
+integration one assumes that you have completed at least the <a class="reference internal" href="tutorial/netascore.html"><span class="doc std std-doc">NetAScore</span></a> and
+<a class="reference internal" href="tutorial/openrouteservice.html"><span class="doc std std-doc">openrouteservice</span></a> sections.</p>
+<p>During the hands on part, both organisers will be available to assist, and to answer any questions that you may have
+about the tools used.</p>
+<section id="agenda-for-today">
+<h2>Agenda for today<a class="headerlink" href="#agenda-for-today" title="Permalink to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Time</p></th>
+<th class="head"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16:00</p></td>
+<td><p>Introduction to the tutorial</p></td>
+</tr>
+<tr class="row-odd"><td><p>16:05</p></td>
+<td><p>What is walk and bikeability, NetAScore, and openrouteservice</p></td>
+</tr>
+<tr class="row-even"><td><p>16:30</p></td>
+<td><p>Hands on tutorial</p></td>
+</tr>
+<tr class="row-odd"><td><p>17:45</p></td>
+<td><p>Wrap up</p></td>
+</tr>
+<tr class="row-even"><td><p>18:00</p></td>
+<td><p>End of the session</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="who-are-we">
+<h2>Who are we?<a class="headerlink" href="#who-are-we" title="Permalink to this heading">#</a></h2>
+<img alt="Adam Rousell" class="organiser-profile-photo" src="_images/rousell.png" />
+<p><strong>Adam Rousell</strong> is a PostDoc researcher at <strong>HeiGIT gGmbH</strong> in the Smart Mobility team. <a class="reference external" href="https://heigit.org">HeiGIT</a>,
+the Heidelberg Institute for Geoinformation Technology at <a class="reference external" href="https://uni-heidelberg.de">Heidelberg University</a> is a
+non-profit organisation aiming to improve knowledge and technology transfer from fundamental research in geoinformatics
+to practical applications. With focus areas of Smart Mobility, Big Spatial Data Analytics, Geoinformation for
+Humanitarian Aid, and Climate Action, HeiGITs vision is to build a better society and environment by improving open
+geoinformation and geoinformation technology. HeiGIT closely cooperates with the
+<a class="reference external" href="https://www.geog.uni-heidelberg.de/gis/">GIScience Research</a> Group at Heidelberg University. This cooperation enables
+HeiGIT to realize innovative state-of-the-art solutions, incorporating cutting-edge knowledge and technology from both
+academic research and real-life technology.</p>
+<div style="clear: both"></div>
+<img alt="Christian Werner" class="organiser-profile-photo" src="_images/werner.png" />
+<p><strong>Christian Werner</strong> is a PhD researcher at the <a class="reference external" href="https://mobilitylab.zgis.at/en/">Mobility Lab</a> research group at the <strong>Department of Geoinformatics, <a class="reference external" href="https://www.plus.ac.at/?lang=en">University of Salzburg</a></strong>. With an origin in digital media application development and design, he graduated in Applied Geoinformatics with a master thesis on geostatistical assessment of cyclist stress detected from physiological measurements. His research revolves around infrastructure suitability for active modes, morphology and spatial configuration of transport networks, and resulting systemic effects on sustainable mobility. He is interested in the development of methods to assess and optimize network connectivity for active modes, as well as the interconnection between active mobility and public transport.</p>
+<div style="clear: both"></div>
+<p><strong>Get in touch</strong></p>
+<p>Adam Rousell
+<a class="reference external" href="mailto:adam&#46;rousell&#37;&#52;&#48;heigit&#46;org">adam<span>&#46;</span>rousell<span>&#64;</span>heigit<span>&#46;</span>org</a></p>
+<p>Christian Werner
+<a class="reference external" href="mailto:christian&#46;werner&#37;&#52;&#48;plus&#46;ac&#46;at">christian<span>&#46;</span>werner<span>&#64;</span>plus<span>&#46;</span>ac<span>&#46;</span>at</a></p>
+<img alt="HeiGIT logo" class="footer-logo" src="_images/heigit_logo.png" />
+<img alt="GIScience logo" class="footer-logo" src="_images/giscience_logo.png" />
+<img alt="UHEI logo" class="footer-logo" src="_images/uhei_logo.png" />
+<img alt="Z_GIS logo" class="footer-logo" src="_images/zgis_logo.png" />
+<img alt="Salzburg logo" class="footer-logo" src="_images/salzburg_logo.png" />
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="right-next"
+       href="tutorial/tutorial.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agenda-for-today">Agenda for today</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#who-are-we">Who are we?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By HeiGIT gGmbH; GIScience Research Group, Heidelberg University; Mobility Lab Research Group, Department of Geoinformatics, University of Salzburg
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

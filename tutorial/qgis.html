@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Visualisation in QGIS &#8212; openrouteservice and NetAScore tutorial - AGILE 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/qgis';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integration" href="integration.html" />
+    <link rel="prev" title="openrouteservice" href="openrouteservice.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">openrouteservice and NetAScore tutorial - AGILE 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial content</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources for the tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netascore.html">NetAScore</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrouteservice.html">Openrouteservice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Combining the services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OpenStreetMap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openstreetmap/intro.html">What is OpenStreetMap?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NetAScore</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../netascore/intro.html">What is NetAScore?</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">openrouteservice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/01_what.html">What is openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/02_how.html">How to use openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/03_ecosystem.html">How to integrate openrouteservice?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Research and usecases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/health_access.html">Accessibility to healthcare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/disaster_portal.html">HeiGIT Disaster Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/green_routing.html">Healthy Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/research/centrality.html">Network analysis - Centrality</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24/issues/new?title=Issue%20on%20page%20%2Ftutorial/qgis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/qgis.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualisation in QGIS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-visualising-walkability-of-routes-in-qgis">Part 1: Visualising walkability of routes in QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-resources">Required resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-qgis-and-the-openrouteservice-plugin">1. Installing QGIS and the openrouteservice plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-ors-tools-plugin">2. Setting up the ORS Tools plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-some-routing">3. Doing some routing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reachability">4. Reachability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-bikability">5. Assessing bikability</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-visualising-bikeability-and-walkability-for-glasgow-city-in-qgis">Part 2: Visualising bikeability and walkability for Glasgow City in QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Required resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-netascore-data-into-qgis">Load the NetAScore data into QGIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-symbology-for-bikeability">Create a symbology for bikeability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-visualisation-for-walkability">Add a visualisation for walkability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-basemap">Add a basemap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-into-index-robustness">Looking into index robustness</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="visualisation-in-qgis">
+<h1>Visualisation in QGIS<a class="headerlink" href="#visualisation-in-qgis" title="Permalink to this heading">#</a></h1>
+<section id="part-1-visualising-walkability-of-routes-in-qgis">
+<h2>Part 1: Visualising walkability of routes in QGIS<a class="headerlink" href="#part-1-visualising-walkability-of-routes-in-qgis" title="Permalink to this heading">#</a></h2>
+<p>In this part of the tutorial, we will look at how to use QGIS alongside openrouteservice to do some analysis relating to the bikability of areas.</p>
+<section id="required-resources">
+<h3>Required resources<a class="headerlink" href="#required-resources" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>QGIS</p></li>
+<li><p>openrouteservice QGIS plugin</p></li>
+<li><p>Quick Map Services QGIS plugin</p></li>
+<li><p>openrouteservice API key (see resources section to get this)</p></li>
+</ul>
+</section>
+<section id="installing-qgis-and-the-openrouteservice-plugin">
+<h3>1. Installing QGIS and the openrouteservice plugin<a class="headerlink" href="#installing-qgis-and-the-openrouteservice-plugin" title="Permalink to this heading">#</a></h3>
+<p>The first thing that you need to do if you haven’t already is to install QGIS on your system. QGIS is an opensource GIS
+application that is available on many systems. You can find out how to install it on your system form the <a class="reference external" href="https://qgis.org/en/site/forusers/download.html">QGIS
+installation pages</a>.</p>
+<p>When you have QGIS running, to make it easy to query openrouteservice you need to install the openrouteservice plugin.
+This plugin is available on the global QGIS plugin repository, and is called “ORS Tools”. To install it, use the
+following steps:</p>
+<ol class="arabic simple">
+<li><p>Open the Plugins Manager from the top menu Plugins -&gt; Install and manage plugins</p></li>
+</ol>
+<p><img alt="qgis plugin menu" src="../_images/plugin-menu.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>This will bring up the Plugin manager window (after refreshing the repo listings). In the search bar, enter “ors
+tools”, select the “ORS Tools” plugin, and click “Install Plugin” (bottom right of the window). This will install the
+plugin into your QGIS environment.</p></li>
+</ol>
+<p><img alt="qgis plugin manager" src="../_images/plugin-manager.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>To make understanding the data easier, we will also install the “Quick Map Services” plugin. You do this the same as
+for the openrouteservice plugin, but search and select the “QuickMapServices” plugin.</p></li>
+</ol>
+<p><img alt="qgis plugin manager" src="../_images/plugin-manager-qms.png" /></p>
+</section>
+<section id="setting-up-the-ors-tools-plugin">
+<h3>2. Setting up the ORS Tools plugin<a class="headerlink" href="#setting-up-the-ors-tools-plugin" title="Permalink to this heading">#</a></h3>
+<p>Before you can use the ORS Tools plugin properly, you need to do some configuration to allow it to communicate with
+an openrouteservice instance. In our case, we have setup a special public instance that can be accessed with the API
+key which can be downloaded from the shared web drive listed in the <a class="reference internal" href="resources.html"><span class="doc std std-doc">resources</span></a> section of this tutorial.</p>
+<p>To configure a “provider”, navigate to the Web -&gt; ORS Tools -&gt; Provider Settings menu.</p>
+<p><img alt="ors tools plugin provider menu" src="../_images/orstools-provider-menu.png" /></p>
+<p>This will open up the Provider Settings window. We need to add a new provider by clicking on the “Add” button (lower
+left corner) which will then prompt you for a name. Let’s call this provider “agile conference openrouteservice”.
+After clicking “OK” you will now see the Provider Settings window again, but this time showing the text boxes to
+enter information for the new provider. For the Base URL, you need to enter <code class="docutils literal notranslate"><span class="pre">https://api.openrouteservice.org/agile-conference</span></code>
+and the API key that you can download from the shared web drive. You can leave the Request timeout as the default value
+of 60. Once you have entered this information, click on Save to store it ready for use when you come to doing some
+routing.</p>
+<p><img alt="ors tools plugin provider settings" src="../_images/orstools-provider-settings.png" /></p>
+</section>
+<section id="doing-some-routing">
+<h3>3. Doing some routing<a class="headerlink" href="#doing-some-routing" title="Permalink to this heading">#</a></h3>
+<p>Now that we have all the plugins and setups needed, we can start actually producing some routes. To start off, it would
+be good to actually know where we are doing routes to and from. As openrouteservice is based on OSM data, it is good to
+have a map available that corresponds to that data. Luckily, we have already installed a plugin that allows you to show
+the OSM data as a base map - the QuickMapServices plugin. To load that OSM data, you need to use the QuickMapServices
+plugin top menu, so Web -&gt; QuickMapServices -&gt; OSM -&gt; OSM Standard. This loads the OSM data as a raster base map in
+QGIS.</p>
+<p><img alt="quickmapservice menu" src="../_images/quickmapservices-menu.png" /></p>
+<p>The openrouteservice setup that we will use for this tutorial contains road data for Scotland, so we need to make sure
+that our routes that we want to generate are in scotland. In this tutorial, we will focus on Glasgow, but feel free to
+also do things in other places in Scotland.</p>
+<p>The bread and butter of the ORS Tools plugin is to allow you to generate a route between two points by querying the
+public openrouteservice API. When you load the plugin through the Web -&gt; ORS Tools -&gt; ORS Tools menu (or by clicking
+on the plugin’s icon in the toolbar), you will get the main window for the plugin:</p>
+<p><img alt="orstools plugin" src="../_images/orstools.png" /></p>
+<p>At the top of this window you will find some links to useful online resources such as the Ask forum which is a great
+place to go to if you have a question or problem relating to using this plugin or any other aspect of
+openrouteservice. Next is the provider area where you select where you want to send your routing queries to. In an
+earlier stage of this tutorial, you already added a new provider which sends requests to the special routing
+instance setup for this tutorial. By default, the standard public openrouteservice provider is selected, but you can
+choose another one that has been configured by clicking on the current provider to bring up a list. So let’s go
+ahead and already select the <code class="docutils literal notranslate"><span class="pre">agile</span> <span class="pre">conference</span> <span class="pre">openrouteservice</span></code> provider. Next up is where you select routing
+options. As a very first example, we will stick with the “Advanced Directions” (we will use the “Batch Jobs” area in
+a later step). The next drop downs allow you to select a routing profile, and the preferred type of route. In the
+scotland instance we have setup, there are only foot-walking and cycling-regular available, so let’s select
+“cycling-regular” and the preference to “shortest”. This will add information to the request sent to the special
+instance that tells it to do a normal bike route, and focus on getting the shortest route possible.</p>
+<p>We now have the basic settings, so let’s select our start and end points for the route. For this example, let’s do a
+route from the university to the main train station in Glasgow. To add the points, click on the green “+” button
+which will hide the plugin window and move you back to the main QGIS window. To choose your points, click roughly
+where the university is to set the start point, and then double click around the train station to set the end point
+(if you single click, it will add a via point rather than specifying the end point). The following image shows
+roughly where to place these points:</p>
+<p><img alt="start and end points of route" src="../_images/start_end_points.png" /></p>
+<p>After you double click to set the end point, you will be returned to the ORS Tools window and you can see the
+vertices in the list. If you accidentally added a via point or got another point in the wrong locations, you can
+delete it by selecting the point in the list, and then clicking the red “x” button. If you have not selected a point
+in the list, clicking this button will clear all the points in the list. To make things easier in later stages, you
+should click on the “Save Points” icon (below the “Delete Point” button) which will add the points to QGIS as a
+point layer called “Vertices”.</p>
+<p><img alt="orstools plugin routing basic settings" src="../_images/orstools-basic-filled.png" /></p>
+<p>Now that all the information is added, you can click on “Apply” and you should get the shortest bike route between
+these two points added to QGIS as a layer. If there was an error displayed, make sure that you have selected the
+correct provider, that ti is configured correctly (with the API key from resources), and that you have selected
+“cycling-regular” and “shortest”.</p>
+<p><img alt="basic route from ors" src="../_images/basic_route.png" /></p>
+<p>So there we are, you now have a route in QGIS. If you open the attribute table for this layer, you will see that the
+feature has information about how long it is, and the estimated amount of time needed for the journey. It is a good
+idea to change the name of the layer to something more meaningful, so let’s call it “bike shortest standard” (by
+right clicking on the layer and choosing “Rename Layer”).</p>
+</section>
+<section id="reachability">
+<h3>4. Reachability<a class="headerlink" href="#reachability" title="Permalink to this heading">#</a></h3>
+<p>Reachability refers to how far you can get from a specified point in either distance (isolines) or time (isochrones).
+This sort of analysis is particularly useful if you want to determine things such as service area for facilities
+like subway stations. For our example, we will look at a basic visualisation of how far you can get from the central
+train station by foot in specified times.</p>
+<p>To start, open up the ORS Tools plugin, and this time click on the “Batch Jobs” button. This will hide the point
+list area and instead bring show some buttons for doing some more advanced analysis.</p>
+<p><img alt="orstools batch job panel" src="../_images/orstools_batch_jobs.png" /></p>
+<p>From these buttons, click on “Isochrones from Point” to open a second ORS Tools window where you set parameters for
+doing reachability analysis. In this window, select the “agile conference openrouteservice” as the provider, and
+“foot-walking” as Travel mode. Click on the three dots by the “Input point from map canvas” entry and then go to the
+main QGIS window where you can click on the map to set the starting point for the reachability analysis. For us,
+let’s again click on the main train station in Glasgow. This will add the coordinates to the text box under the
+“Input point”. Next, make sure that “Time” is selected under Dimension (so that we do reachability based on time)
+and then enter the duration of travel in the “comma seperated ranges” box. This text fields accepts multiple comma
+seperated value that represent either time in minutes, or distance in metres. We want to see how far people can get
+from the station in 10, 20 and 30 minutes, so enter <code class="docutils literal notranslate"><span class="pre">10,20,30</span></code> in this box. Leave location type and advanced options
+as is, and then click on “Run”.</p>
+<p><img alt="orstool reachability settings" src="../_images/orstools_batch_reachability_settings.png" /></p>
+<p>This will add the isochrone to QGIS as a layer, with polygons representing how far you can get in 10, 20 and 30
+minutes by foot from the train station.</p>
+<p><img alt="reachability polygons" src="../_images/basic_isochrone.png" /></p>
+</section>
+<section id="assessing-bikability">
+<h3>5. Assessing bikability<a class="headerlink" href="#assessing-bikability" title="Permalink to this heading">#</a></h3>
+<p>In the final part of this tutorial section, we will use the ORS Tools plugin to derive some information about the<br />
+bikability of routes.</p>
+<p>In the special instance of openrouteservice provided for this tutorial, bikability has been included from NetAScore
+for all ways in Scotland. As discussed in the “<a class="reference internal" href="openrouteservice.html"><span class="doc std std-doc">openrouteservice</span></a>” part of this tutorial, this
+information is stored on the routing graph and can be used to alter how much a particular way is avoided in routing.
+For this example, we will stick with the route between the university and main train station in Glasgow.</p>
+<p>To start with open up the ORS Tools plugin and navigate to the Batch Jobs area. Once there, select the “Points (1
+layer)” button from the Directions section to open up the advanced routing window. There are a number of settings
+here that you need to change to be able to do routing that takes into account bikability, but let’s start by setting
+the provider to be the “agile conference openrouteservice”, Travel Mode to “cycling-regular” and Travel preference
+to be “shortest”. For “Input”, click the box and select the layer that we earlier created by saving the start and
+end points form the basic routing generation (it should be called “vertices” unless you changed it). That is enough
+to be able to generate a route, but to do bikability, we need to scroll down and expand the “Advanced Parameters”
+section which will show some options that can be added to routing requests. Of relevance to this example, we need
+the “Extra Info”, “Csv Factor”, and “Csv Column” parameters. “Extra Info” is a list of attributes about the
+underlying features that make up a route which are then returned alongside the route geometry in an encoded format.
+Csv Column is the weighting value that we want to apply to ways of the route so that they are avoided more than they
+normally would be. Csv factor is a decimal value between 0 and 1 that defines how much effect the weighting factor
+has on the route generation itself, with 0 meaning there is no effect and 1 meaning that it has the highest level of
+effect as possible.</p>
+<p>To start with, from Extra Info select “csv”, set “Csv column” to be “index_bike”, and “Csv factor” to be 0. This
+will result in the same shortest route as before as we are telling it that the weighting has no effect. However,
+having this information is important when we want to get the extra info about the bikability (the csv extra info
+needs to know which weighting to return).</p>
+<p><img alt="orstools bikability settings" src="../_images/bikability_0_settings.png" /></p>
+<p>When you click on “Run” you should then have the resulting route added to QGIS as a layer (Note: the route is
+displayed as a simple line which may be difficult to see against the OSM background map). Though this route is the
+same as the shortest route that we generated earlier, if you look into the attribute table you will see that rather
+there being one entry containing information about the route, there are a number of entries and a column called
+“CSV”. These entries represent segments of the route that have different values from the csv extra info, in our case
+these values represent the bikability of the route. One important thing to note here is that the numbers go from 0
+to 100, where 100 represents parts of the route that are not bikable, and 0 represents those that are very bikable.
+To visualise this information, let’s change the symbology of the layer by right clicking on the layer in the Layers
+panel and selecting “Properties”. Navigate to the “Symbology” tab, and select “Graduated” from the drop down at the
+top of the window. Now select “CSV” as the “Value” and choose a suitable colour ramp. As we know that 0 is bikable
+and 100 is not bikable, you could select the “Spectral” colour ramp, and then choose to invert it so that higher
+values are seen as red. Now select an “Equal Interval” Mode with 5 Classes, and click the “Classify” button. This
+will create 5 equally sized classes that will then be used to show the information.</p>
+<p><img alt="bikability route symbology settings" src="../_images/bikability_0_symbology.png" /></p>
+<p>Once you have changed these settings, click “OK” to change the symbology of the route. If the lines are too small to
+see well, you can go back to the symbology settings, click on the “Symbol” area near the top of the window, and
+change the width of the line. You can also change the transparency of the background map by right clicking the “OSM
+Standard” layer, selecting properties, going to the “transparency” tab and then using the slider to reduce the
+opacity. Now you are able to see the bikability of the sections of the route.</p>
+<p><img alt="bikability route" src="../_images/bikability_0_route.png" /></p>
+<p>Now what does a route look like where we tell it that we want a more bikable route? To see this, follow the above
+steps, but this time set the Csv Factor value to be 1. What we see in the resultant route is one that avoids the
+areas in the original route that were seen as low bikability.</p>
+<p><img alt="bikability route" src="../_images/bikability_1_route.png" /></p>
+<p>If we want to see the difference in length and travel time, we need to rerun the above steps, but <strong>not</strong> select the
+csv option in the Extra Info area. This will result in the route being returned as a single line with the duration
+and length attributes attached. When we look at the two routes, for our route (the routes can vary significantly
+based on the exact position of the start and end points), we see that the route that doesn’t take into account
+bikability is 3.2km long and takes approximately 14 minutes to traverse, whereas the more bikable route is 3.4km
+long and takes almost 15 minutes. Though over these shorter distances, it may be preferable to take the slightly
+longer route that is more bikable, in others, the difference might be too great.</p>
+<p><img alt="difference between routes" src="../_images/difference_between_routes.png" /></p>
+</section>
+</section>
+<section id="part-2-visualising-bikeability-and-walkability-for-glasgow-city-in-qgis">
+<h2>Part 2: Visualising bikeability and walkability for Glasgow City in QGIS<a class="headerlink" href="#part-2-visualising-bikeability-and-walkability-for-glasgow-city-in-qgis" title="Permalink to this heading">#</a></h2>
+<p>In this part of the tutorial, we will visualise NetAScore results for the whole City of Glasgow. It is a typical first step after computing segment-based bikeability and walkability, allowing for exploratory, visual analytics of an area of interest.</p>
+<section id="id1">
+<h3>Required resources<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>As we do not need to compute routes for this analysis, it is sufficient to have a NetAScore output file at hand. To use the pre-computed example for Glasgow, simply download it from the <a class="reference external" href="https://heibox.uni-heidelberg.de/d/9f1c43601ad2475f843b/">shared web drive</a> (<code class="docutils literal notranslate"><span class="pre">netascore_glasgow.gpkg</span></code>).</p>
+<p>If you do not have installed QGIS yet, please follow the <a class="reference external" href="https://qgis.org/en/site/forusers/download.html">installation instructions</a>.</p>
+</section>
+<section id="load-the-netascore-data-into-qgis">
+<h3>Load the NetAScore data into QGIS<a class="headerlink" href="#load-the-netascore-data-into-qgis" title="Permalink to this heading">#</a></h3>
+<p>To load the NetAScore data, simply open QGIS and drag and drop the <code class="docutils literal notranslate"><span class="pre">netascore_glasgow.gpkg</span></code> (or whatever local output you want to visualize) from your file browser into the main QGIS window. As an alternative, you may create a new project first and then select and double-click the file from the “Browser” panel.</p>
+<p>QGIS will ask you about which layer(s) to add. For visualising segment-based bikeability and walkability, adding the “edge” layer is sufficient. To do so, simply click on the layer name to select it,  and then press “Add Layers”.</p>
+<p><img alt="select layer" src="../_images/gpkg_layer.png" /></p>
+<p>After import, your QGIS window should look similar to the one shown below. All segments of the imported network have the same colour and line style. Therefore, we will add a style definition to visualise bikeability or walkability values in the next step.</p>
+<p><img alt="imported file" src="../_images/justimported.png" /></p>
+</section>
+<section id="create-a-symbology-for-bikeability">
+<h3>Create a symbology for bikeability<a class="headerlink" href="#create-a-symbology-for-bikeability" title="Permalink to this heading">#</a></h3>
+<p>For colouring segments according to their bikeability or walkability, we need to change the layer symbology. To do so, first double-click on the layer name in the “layer” panel. This will open the layer properties dialog. Then, in the navigation bar on the left, select “Symbology”. It should look similar to the screenshot below.</p>
+<p><img alt="initial symbology" src="../_images/symbology_o.png" /></p>
+<p>Instead of the “Single Symbol” visualisation, we now want to use a “Graduated” style. Please select this option from the topmost dropdown field.</p>
+<p>In the next step, we need to choose the column to use as input for graduated visualisation. For example, if you want to visualise bikeability, select the column “index_bike_ft” from the dropdown labeled “Value”. This refers to the “bike” profile we used when running NetAScore, with “_ft” being the forward direction along each segment.</p>
+<p>Once the input values are defined, you can now choose a color ramp. With clicking on the small arrow next to the color ramp, you can choose from several presets. The “Spectral” preset is the one we applied in our example.
+A good starting point for classification is to use “Equal Interval” mode with 5 classes.
+The following screenshot gives an overview of the parameters we applied:</p>
+<p><img alt="symbology for bikeability" src="../_images/symbology_s.png" /></p>
+<p>As the bikeability and walkability index values range from 0 (unsuitable infrastructure) to 1 (very suitable infrastructure), make sure that the classification uses these as upper and lower bounds. For the example of Glasgow, this should be set automatically. If not, simply double-click the values shown in the “Values” column next to the coloured class symbols and edit the bounds manually.</p>
+<p>After clicking “OK”, your data should be visualized similar to the image below:</p>
+<p><img alt="select layer" src="../_images/overview.png" /></p>
+</section>
+<section id="add-a-visualisation-for-walkability">
+<h3>Add a visualisation for walkability<a class="headerlink" href="#add-a-visualisation-for-walkability" title="Permalink to this heading">#</a></h3>
+<p>If you want to add a visualisation for walkability as well, just right-click on the bikeability layer in the “Layers” panel and choose “Duplicate Layer”. You may now want to give each layer an intuitive name - this can be done by right-clicking and selecting “Rename Layer”.</p>
+<p>Then, for the layer that should represent walkability, open the layer properties by double-clicking the layer name. It should be sufficient to now select the column “index_walk_ft” as the “Value” instead of the bikeability index. After clicking on “OK”, your layer should update accordingly.</p>
+<p>You can toggle layer visibility using the checkbox next to layer names in the “Layer” panel.</p>
+</section>
+<section id="add-a-basemap">
+<h3>Add a basemap<a class="headerlink" href="#add-a-basemap" title="Permalink to this heading">#</a></h3>
+<p>To add a background map, you can either choose the default OSM tiles provided with QGIS, or use the “QuickMapServices” extension. For the default OSM tiles, double-click on “OpenStreetMap” within the “XYZ Tiles” section in the “Browser” panel (see screenshot for reference). The QuickMapServices also provide layers with a reduced color scheme - e.g. CartoDB Positron.</p>
+<p><img alt="OSM basemap" src="../_images/osm.png" /></p>
+</section>
+<section id="looking-into-index-robustness">
+<h3>Looking into index robustness<a class="headerlink" href="#looking-into-index-robustness" title="Permalink to this heading">#</a></h3>
+<p>NetAScore currently allows basic tracking of index robustness. The columns <code class="docutils literal notranslate"><span class="pre">index_bike_ft_robustness</span></code>, <code class="docutils literal notranslate"><span class="pre">index_walk_ft_robustness</span></code>, etc. provide an indicator that represents the sum of weights for all indicators available per segment.
+For example, as the default profile includes gradient with a weight of 0.2 and we did not supply DEM data for the Glasgow example, the robustness value is reduced by 0.2.
+If you visualize the robustness column in QGIS, you will notice that consequently the maximum robustness for the whole area is 0.8. If relevant OSM attributes are missing and cannot be inferred from the context, the index robustness is further decreased.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="openrouteservice.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">openrouteservice</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-visualising-walkability-of-routes-in-qgis">Part 1: Visualising walkability of routes in QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-resources">Required resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-qgis-and-the-openrouteservice-plugin">1. Installing QGIS and the openrouteservice plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-ors-tools-plugin">2. Setting up the ORS Tools plugin</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-some-routing">3. Doing some routing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reachability">4. Reachability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-bikability">5. Assessing bikability</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-visualising-bikeability-and-walkability-for-glasgow-city-in-qgis">Part 2: Visualising bikeability and walkability for Glasgow City in QGIS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Required resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-netascore-data-into-qgis">Load the NetAScore data into QGIS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-symbology-for-bikeability">Create a symbology for bikeability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-visualisation-for-walkability">Add a visualisation for walkability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-basemap">Add a basemap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-into-index-robustness">Looking into index robustness</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By HeiGIT gGmbH; GIScience Research Group, Heidelberg University; Mobility Lab Research Group, Department of Geoinformatics, University of Salzburg
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

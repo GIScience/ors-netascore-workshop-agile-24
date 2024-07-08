@@ -1,0 +1,929 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>openrouteservice &#8212; openrouteservice and NetAScore tutorial - AGILE 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/openrouteservice';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Visualisation in QGIS" href="qgis.html" />
+    <link rel="prev" title="Installing and running NetAScore" href="netascore.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">openrouteservice and NetAScore tutorial - AGILE 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Open data and methods for assessing active mobility options: Routing in the context of bikeability and walkability
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial content</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources for the tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="netascore.html">NetAScore</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Openrouteservice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qgis.html">QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Combining the services</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OpenStreetMap</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openstreetmap/intro.html">What is OpenStreetMap?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">NetAScore</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../netascore/intro.html">What is NetAScore?</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">openrouteservice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/01_what.html">What is openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/02_how.html">How to use openrouteservice?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/03_ecosystem.html">How to integrate openrouteservice?</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Research and usecases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/health_access.html">Accessibility to healthcare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/disaster_portal.html">HeiGIT Disaster Portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/usecases/green_routing.html">Healthy Routing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openrouteservice/research/centrality.html">Network analysis - Centrality</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GIScience/ors-netascore-workshop-agile-24/issues/new?title=Issue%20on%20page%20%2Ftutorial/openrouteservice.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/openrouteservice.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>openrouteservice</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-prerequisites">Installation &amp; Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-resources">1. Getting the resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-file-structure">2. Setting up the file structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">3. Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-instance">4. Starting your first instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-your-instance">5. Querying your instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-different-profiles">6. Using different profiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-do-some-walkable-routing">7. Let’s do some walkable routing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="openrouteservice">
+<h1>openrouteservice<a class="headerlink" href="#openrouteservice" title="Permalink to this heading">#</a></h1>
+<section id="installation-prerequisites">
+<h2>Installation &amp; Prerequisites<a class="headerlink" href="#installation-prerequisites" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/">Docker</a></p></li>
+</ul>
+<p>The simplest way of running openrouteservice is through Docker and Docker Compose. To install these on your system,
+you can follow the guides provided by Docker at <a class="reference external" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a>.</p>
+<section id="getting-the-resources">
+<h3>1. Getting the resources<a class="headerlink" href="#getting-the-resources" title="Permalink to this heading">#</a></h3>
+<p>The very first thing that you need to get openrouteservice running is to get the Docker Compose file. You can create
+this yourself, but the recommended method is to download one that has been automatically created for the latest
+version of openrouteservice. This file is available in the Assets part of the latest release page (<a class="github reference external" href="https://github.com/GIScience/openrouteservice/releases/tag/v8.1.0">GIScience/openrouteservice</a>).
+Whilst you are there, it is also a good idea to download the configuration file <code class="docutils literal notranslate"><span class="pre">ors-config.yaml</span></code>. Openrouteservice can
+have settings applied through this configuration file, through environment variables or via parameters in the docker
+compose file, but in this tutorial we will only work with the yaml configuration.</p>
+<p>Use these links below to download the files. Updae the version number in the URL if you want to have the latest release.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">GIScience</span><span class="o">/</span><span class="n">openrouteservice</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v8</span><span class="mf">.1.0</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">GIScience</span><span class="o">/</span><span class="n">openrouteservice</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v8</span><span class="mf">.1.0</span><span class="o">/</span><span class="n">ors</span><span class="o">-</span><span class="n">config</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+<p>You should also download some OSM data that you can use in your local instance. One thing to keep in mind when
+choosing the area you want ot use is how much data is there. The more data there is, the more RAM and time needed
+for building the routing graph. As a general rule of thumb, we say that the amount of RAM needed <strong>per profile</strong> is at
+least twice the size of the OSM pbf file, meaning if you wanted to build the car profile for Germany, which has a pbf
+file size (from GeoFabrik) of 4.0GB, you would need to allocate at least 8.0GB of RAM. A good place to download OSM
+data from (as already mentioned) is GeoFabrik. From their website (<a class="reference external" href="https://download.geofabrik.de">https://download.geofabrik.de</a>)
+you can download various extents of OSM data split by continent, country or region. If you want a smaller region than
+what they offer, then you can also use tools such as Osmium to extract regions from pbf files. For this tutorial, we
+have provided a pbf file of Glasgow, which you can access from the <a class="reference internal" href="resources.html"><span class="doc std std-doc">resources</span></a> web drive for this tutorial.</p>
+</section>
+<section id="setting-up-the-file-structure">
+<h3>2. Setting up the file structure<a class="headerlink" href="#setting-up-the-file-structure" title="Permalink to this heading">#</a></h3>
+<p>If you are using the docker compose file provided by openrouteservice (see previous step), then we will be working
+with Docker volumes mapped to folders. These mappings basically link the folders of the host machine to folders
+inside the Docker container.</p>
+<p>For this tutorial, the file structure is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openrouteservice
+│   docker-compose.yml
+└───config 
+│       ors-config.yml  
+└───elevation_cache
+└───files
+|       glasgow-latest.osm.pbf
+└───graphs
+└───logs
+</pre></div>
+</div>
+<p>To start with, create a folder called <code class="docutils literal notranslate"><span class="pre">openrouteservice</span></code> which will act as the root of the openrouteservice folder
+structure. Inside this folder you should put your <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file and create subfolders which will then be
+mapped into the Docker container. These folders will then be used to pass data into openrouteservice, as well as
+preserving data generated. The folders needed are:</p>
+<ul class="simple">
+<li><p><strong>config</strong> - this will be where you store the configuration file for openrouteservice</p></li>
+<li><p><strong>elevation_cache</strong> - when you tell openrouteservice to take into account elevation data, this data is downloaded from
+various sources. To make sure that it is only done once (as long as you don’t change the area covered by the pbf
+file), files are mapped into the elevation_cache folder so they are preserved when the container is shut down</p></li>
+<li><p><strong>files</strong> - the <code class="docutils literal notranslate"><span class="pre">files</span></code> folder is used ot pass data into the container. Such files include the OSM data, and any
+other data used for graph building (e.g. a walkability index csv file)</p></li>
+<li><p><strong>graphs</strong> - openrouteservice builds routable graphs based on the OSM data. These graphs are stored to disk and
+comprise of multiple files representing different aspects of the data created. By mapping this folder, the graphs
+are preserved after the container is shut down</p></li>
+<li><p><strong>logs</strong> - during the build and serving of graphs, openrouteserivce creates log files relating to what is
+happening and any errors. These are stored in this folder</p></li>
+</ul>
+<p>For the basic setup, you should place the ors-config.yml file in the <code class="docutils literal notranslate"><span class="pre">config</span></code> folder, and the pbf file in the
+<code class="docutils literal notranslate"><span class="pre">files</span></code> folder.</p>
+</section>
+<section id="configuration">
+<h3>3. Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">#</a></h3>
+<p>Before configuring openrouteservice itself, you need to setup the docker compose environment. This is done through
+the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file. When you use the file provided by openrouteservice, the important aspects that need
+changing before running openrouteservice are the mappings of volumes and the amount of RAM to allocate. Under the
+<code class="docutils literal notranslate"><span class="pre">volumes</span></code> section of the file, you will see a number of commented out (with a #) lines. These are the mappings to
+the folders that we created in the previous step, and so to allow the mappings you need to uncomment them (remove
+the first <code class="docutils literal notranslate"><span class="pre">#</span></code> of each line). You also need to comment out (add a <code class="docutils literal notranslate"><span class="pre">#</span></code> at the start of the line) the first mapping. In
+the end, the volume section should look as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">volumes</span><span class="p">:</span><span class="w">  </span><span class="c1"># Mount relative directories. ONLY for local container runtime. To switch to docker managed volumes see &#39;Docker Volumes configuration&#39; section below.</span>
+<span class="w">      </span><span class="c1"># - ./ors-docker:/home/ors  # Mount the ORS application directory (for logs, graphs, elevation_cache, etc.) into its own directory</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./graphs:/home/ors/graphs</span><span class="w">  </span><span class="c1"># Mount graphs directory individually</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./elevation_cache:/home/ors/elevation_cache</span><span class="w">  </span><span class="c1"># Mount elevation cache directory individually</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./config:/home/ors/config</span><span class="w">  </span><span class="c1"># Mount configuration directory individually</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./logs:/home/ors/logs</span><span class="w">  </span><span class="c1"># Mount logs directory individually</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./files:/home/ors/files</span><span class="w">  </span><span class="c1"># Mount files directory individually</span>
+</pre></div>
+</div>
+<p>Next, we may need to edit the amount of RAM allocated. Again, the minimum amount of RAM is generally at least twice
+the size of the pbf file. You change this with the <code class="docutils literal notranslate"><span class="pre">XMS</span></code> and <code class="docutils literal notranslate"><span class="pre">XMX</span></code> properties (minimum and maximum size of the Java
+heap respectively) under <code class="docutils literal notranslate"><span class="pre">JAVA</span> <span class="pre">OPTS</span></code> in the <code class="docutils literal notranslate"><span class="pre">environment</span></code> section of the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (see code below). As the glasgow pbf file is less than 10MB, we can leave these values as the default (we could
+even reduce them if we wanted). Once you have modified these parts of the docker-compose file, you are ready to move on
+to modifying the configuration of openrouteservice itself.</p>
+<p>The code below is an excerpt of the docker-compose.yml files</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">environment</span><span class="p">:</span>
+  <span class="n">REBUILD_GRAPHS</span><span class="p">:</span> <span class="kc">False</span>  <span class="c1"># Set to True to rebuild graphs on container start.</span>
+  <span class="n">CONTAINER_LOG_LEVEL</span><span class="p">:</span> <span class="n">INFO</span>  <span class="c1"># Log level for the container. Possible values: DEBUG, INFO, WARNING, ERROR, CRITICAL</span>
+  <span class="c1"># If you don&#39;t want the default ors-config.yml you can specify a custom file name, that should match the file in</span>
+  <span class="c1"># your &#39;config&#39; volume mount.</span>
+  <span class="c1">#ORS_CONFIG_LOCATION: /home/ors/config/my-ors-config.yml  # Location of your ORS configuration file in the docker container</span>
+
+  <span class="c1"># ------------------ JAVA OPTS ------------------ #</span>
+  <span class="c1"># Configure the memory settings for JAVA or pass additional opts</span>
+  <span class="c1"># Fore more available ENV properties see Prepare CATALINA_OPTS and JAVA_OPTS</span>
+  <span class="c1"># in https://github.com/GIScience/openrouteservice/blob/main/docker-entrypoint.sh</span>
+  <span class="n">XMS</span><span class="p">:</span> <span class="mi">1</span><span class="n">g</span>  <span class="c1"># start RAM assigned to java</span>
+  <span class="n">XMX</span><span class="p">:</span> <span class="mi">2</span><span class="n">g</span>  <span class="c1"># max RAM assigned to java. Rule of Thumb: &lt;PBF-size&gt; * &lt;profiles&gt; * 2</span>
+  <span class="c1"># Example: 1.5 GB pbf size, two profiles (car and foot-walking)</span>
+  <span class="c1"># -&gt; 1.5 * 2 * 2 = 6. Set xmx to be AT LEAST `-Xmx6g`</span>
+  <span class="n">ADDITIONAL_JAVA_OPTS</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># further options you want to pass to the java command</span>
+</pre></div>
+</div>
+<p>Configuration of openrouteservice is handled via the <code class="docutils literal notranslate"><span class="pre">ors-config.yml</span></code> file (at least in this tutorial). If you take a
+look
+inside this file, you will see a lot of commented out lines which give examples of some settings that you can change.
+Right now, the most important setting is which OSM file to use for building graphs. About one third down this file
+you will see the property <code class="docutils literal notranslate"><span class="pre">source_file</span></code>, which by default is set to <code class="docutils literal notranslate"><span class="pre">ors-api/src/test/files/heidelberg.osm.gz</span></code>. This
+is a small sample file provided by openrouteservice for Heidelberg in Germany, but we want to use our own OSM file.
+As we are mapping the <code class="docutils literal notranslate"><span class="pre">files</span></code> folder to <code class="docutils literal notranslate"><span class="pre">/home/ors/files</span></code>inside the container, we need to change that property to
+match. So in our case, we have the <code class="docutils literal notranslate"><span class="pre">glasgow-latest.osm.pbf</span></code> file inside the <code class="docutils literal notranslate"><span class="pre">files</span></code> folder, so we change the
+property in the config file to be <code class="docutils literal notranslate"><span class="pre">source_file:</span> <span class="pre">/home/ors/files/glasgow-latest.osm.pbf</span></code>. The important thing to note
+here is that the path is for the file <strong>inside of the container</strong>, hence why use the <code class="docutils literal notranslate"><span class="pre">/home/ors/files</span></code> rather than the
+path that is on our local machine.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#  ##### ORS engine settings #####</span>
+<span class="w">  </span><span class="nt">engine</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">source_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/files/glasgow-latest.osm.pbf</span>
+</pre></div>
+</div>
+<p>Once you have changed that setting, you are good to go to build your first openrouteservice instance!</p>
+</section>
+<section id="starting-your-first-instance">
+<h3>4. Starting your first instance<a class="headerlink" href="#starting-your-first-instance" title="Permalink to this heading">#</a></h3>
+<p>To start your own openouteservice instance, all you need to do is to use docker compose. From the same folder as the
+<code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, open a terminal window and execute <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span> <span class="pre">-d</span></code> (you may need to do this as a
+sudo command depending on your system’s Docker setup). The <code class="docutils literal notranslate"><span class="pre">up</span></code> part tells docker compose to start the containers
+listed under the <code class="docutils literal notranslate"><span class="pre">services</span></code> part of the docker-compose file and any relevant networks. The <code class="docutils literal notranslate"><span class="pre">-d</span></code>tells docker compose
+to do this in detached mode, meaning that it is running in the background. Depending on if this is the first time
+running openrouteservice in Docker or not, it may take some time before this command finishes. When the command has
+executed, if you execute <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> you should see a container running called ors-app.</p>
+<p>You can follow what is happening in the build process by viewing the docker logs using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span> <span class="pre">ors-app</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">-f</span></code> means “follow” so any new log information will be shown on the terminal. If there are no errors, after some
+time you should see something similar to the following in the log output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ORS</span><span class="o">-</span><span class="n">pl</span><span class="o">-</span><span class="n">car</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">ORSGraphHopper</span>             <span class="p">]</span>   <span class="n">flushed</span> <span class="n">graph</span> <span class="n">totalMB</span><span class="p">:</span><span class="mi">1024</span><span class="p">,</span> <span class="n">usedMB</span><span class="p">:</span><span class="mi">563</span><span class="p">)</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">pl</span><span class="o">-</span><span class="n">car</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfile</span>                 <span class="p">]</span>   <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Edges</span><span class="p">:</span> <span class="mi">43242</span> <span class="o">-</span> <span class="n">Nodes</span><span class="p">:</span> <span class="mf">35432.</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">pl</span><span class="o">-</span><span class="n">car</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfile</span>                 <span class="p">]</span>   <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Total</span> <span class="n">time</span><span class="p">:</span> <span class="mf">73.014</span><span class="n">s</span><span class="o">.</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">pl</span><span class="o">-</span><span class="n">car</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfile</span>                 <span class="p">]</span>   <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Finished</span> <span class="n">at</span><span class="p">:</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">29</span> <span class="mi">10</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mf">57.</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="n">Total</span> <span class="n">time</span><span class="p">:</span> <span class="mf">73.206</span><span class="n">s</span><span class="o">.</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="o">========================================================================</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="o">====&gt;</span> <span class="n">Recycling</span> <span class="n">garbage</span><span class="o">...</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="n">Before</span><span class="p">:</span> <span class="n">Total</span> <span class="o">-</span> <span class="mi">1024</span> <span class="n">MB</span><span class="p">,</span> <span class="n">Free</span> <span class="o">-</span> <span class="mf">459.64</span> <span class="n">MB</span><span class="p">,</span> <span class="n">Max</span><span class="p">:</span> <span class="mi">2</span> <span class="n">GB</span><span class="p">,</span> <span class="n">Used</span> <span class="o">-</span> <span class="mf">564.36</span> <span class="n">MB</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="n">After</span><span class="p">:</span> <span class="n">Total</span> <span class="o">-</span> <span class="mi">1024</span> <span class="n">MB</span><span class="p">,</span> <span class="n">Free</span> <span class="o">-</span> <span class="mf">943.80</span> <span class="n">MB</span><span class="p">,</span> <span class="n">Max</span><span class="p">:</span> <span class="mi">2</span> <span class="n">GB</span><span class="p">,</span> <span class="n">Used</span> <span class="o">-</span> <span class="mf">80.20</span> <span class="n">MB</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="o">========================================================================</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="o">====&gt;</span> <span class="n">Memory</span> <span class="n">usage</span> <span class="n">by</span> <span class="n">profiles</span><span class="p">:</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="mf">27.03</span> <span class="n">MB</span> <span class="p">(</span><span class="mf">33.6</span><span class="o">%</span><span class="p">)</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="n">Total</span><span class="p">:</span> <span class="mf">27.03</span> <span class="n">MB</span> <span class="p">(</span><span class="mf">33.6</span><span class="o">%</span><span class="p">)</span>
+<span class="n">ORS</span><span class="o">-</span><span class="n">Init</span> <span class="p">[</span> <span class="n">o</span><span class="o">.</span><span class="n">h</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">RoutingProfileManager</span>            <span class="p">]</span>   <span class="o">========================================================================</span>
+</pre></div>
+</div>
+<p>Don’t worry if the numbers are different - that all depends on how much RAM has been allocated and how big the osm
+files are. The important thing is that you see the <code class="docutils literal notranslate"><span class="pre">[1]</span> <span class="pre">Finished</span> <span class="pre">at:</span></code> part as that indicates that building/loading
+of graphs has finished.</p>
+<p>You can also see whether the instance is ready to receive requests (it has built and/or loaded graphs) by calling
+the openrouteservice API <code class="docutils literal notranslate"><span class="pre">health</span></code> endpoint. When you execute <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:8080/ors/v2/health</span></code> you will either get
+a response of <code class="docutils literal notranslate"><span class="pre">{&quot;status&quot;:</span> <span class="pre">&quot;ready&quot;}</span></code> or <code class="docutils literal notranslate"><span class="pre">{&quot;status&quot;:</span> <span class="pre">&quot;not</span> <span class="pre">ready&quot;}</span></code> depending on if it is ready or not. When you see
+<code class="docutils literal notranslate"><span class="pre">{&quot;status&quot;:</span> <span class="pre">&quot;ready&quot;}</span></code> then openrouteservice is up and running and ready to receive routing requests.</p>
+<p>CONGRATULATIONS! You now have your very own openrouteservice instance!</p>
+</section>
+<section id="querying-your-instance">
+<h3>5. Querying your instance<a class="headerlink" href="#querying-your-instance" title="Permalink to this heading">#</a></h3>
+<p>Now that you have your instance up and running, you can make queries against it. As we used the (pretty much)
+default configuration, the only profile active is the car profile. We will cover how to enable different profiles in
+the next section.</p>
+<p>A great place to start for building queries is the openrouteservice interactive API docs, which you can find at
+<a class="reference external" href="https://openrouteservice.org/dev/#/api-docs">https://openrouteservice.org/dev/#/api-docs</a>. On there, you can construct queries using different parameters (note
+that not all are available in the default setup), and then if you click on the <code class="docutils literal notranslate"><span class="pre">Example</span> <span class="pre">code</span></code> button, you will be
+given the curl request for that combination. You can then copy that and use it as the basis for the request against
+your local instance. The main thing that will need changing though is the base url as by default it points to the
+global API.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;http://localhost:8080/ors/v2/directions/driving-car/geojson&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json; charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;coordinates&quot;:[[-4.288015,55.872373],[-4.257717,55.859417]],&quot;preference&quot;:&quot;shortest&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>In the above example, the difference between the call to the local and the global instance is the URL -
+<code class="docutils literal notranslate"><span class="pre">http://localhost:8080/ors/v2/directions/driving-car/geojson</span></code> rather than
+<code class="docutils literal notranslate"><span class="pre">https://api.openrouteservice.org/v2/directions/driving-car/geojson</span></code> (you also don’t need to provide an API key in
+requests to local instances). Also, the coordinates need to be somewhere inside the area that you have built the
+graphs for, so we have changed the default coordinates in Heidelberg to be some in Glasgow.</p>
+<p>Now that you know how to query the instance, feel free to play around with generating routes, isochrones, and matrix
+requests. You can use the interactive documentation to produce a wide variety of requests that you can make, just
+remember that currently you can only do calls to the car profile, and within Glasgow.</p>
+</section>
+<section id="using-different-profiles">
+<h3>6. Using different profiles<a class="headerlink" href="#using-different-profiles" title="Permalink to this heading">#</a></h3>
+<p>So now you have an instance running and you can make queries, but only to the car profile. Let’s change that!</p>
+<p>Getting other profiles built in the docker openrouteservice setup is as simple as modifying a couple of lines in the
+<code class="docutils literal notranslate"><span class="pre">ors-config.yml</span></code> file, and then recreating the openrouteservice Docker container. So, let’s turn on the walking
+profile (seeing as we are in a tutorial about walkability).</p>
+<p>The first thing to do is to open up the <code class="docutils literal notranslate"><span class="pre">ors-config.yml</span></code> file for editing. As you scroll down (past the huge chunks of
+commented out configurations) you will come across the <code class="docutils literal notranslate"><span class="pre">profiles</span></code> section (roughly halfway). This is where we define
+the profiles that graphs are built for and can subsequently be routed against. As you can see, under this there is
+the <code class="docutils literal notranslate"><span class="pre">car:</span></code> section, which is what tells openrouteservice to build the car profile. Under this section there are a
+number of configuration properties such as <code class="docutils literal notranslate"><span class="pre">preparation:</span> <span class="pre">-&gt;</span> <span class="pre">methods:</span></code> which define the algorithms that are run to
+build and query the graphs. We don’t need to think about these just yet, but it’s good to know that they are there.
+The part that we are currently interested in start at the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">walking:</span></code> line. As you can see, this is commented out
+and so openrouteservice in effect doesn’t know anything about building the walking profile. If we remove the <code class="docutils literal notranslate"><span class="pre">#</span></code>, the
+line is now active. We also need to add the line <code class="docutils literal notranslate"><span class="pre">enabled:</span> <span class="pre">true</span></code> to tell openrouteservice that this profile is to be
+activated. That section of the configuraiton file should now look like the following (indentation is important!):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#          HillIndex:</span>
+<span class="c1">#          TrailDifficulty:</span>
+<span class="w">      </span><span class="nt">walking</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="c1">#        profile: foot-walking</span>
+<span class="c1">#        encoder_options:</span>
+</pre></div>
+</div>
+<p>By doing that, when we run openrouteservice with this configuration file, it will know to build the walking graph with
+default parameters. So let’s do that.</p>
+<p>For any changes made in the config file to take effect, we need to recreate the openrouteservice Docker container.
+To do that, we need to be in a terminal window in the root folder of the openrouteservice setup (where your
+<code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file is) and execute the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">down</span></code>. This shuts down the openrouteservice
+container, but as we are using volumes mapped to folders, the graphs generated for the car profile are persisted and
+will be loaded into the container when we restart it, so those won’t need rebuilding. You can see these by looking
+inside the <code class="docutils literal notranslate"><span class="pre">graphs</span></code></p>
+<p>This is a good spot to point out that if you ever need to rebuild graphs (e.g. if you change the osm data) then you
+need to delete the corresponding graphs folder. For example, if we wanted to rebuild the graphs for the car profile,
+we would need to delete the <code class="docutils literal notranslate"><span class="pre">./graphs/car</span></code> folder on the host machine. If they are not deleted, openrouteservice
+will automatically load them rather than rebuilding them.</p>
+<p>As we are increasing the number of profiles that are being run, we also need to make sure that there is enough RAM
+available. You can change the values in the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file as described in section 3. So if you are
+building two profiles on a 1GB pbf file, you will need to allocate at least 4GB (2GB for car, 2GB for walking).
+Again, as we are using a small data file, we don’t need to change anything here.</p>
+<p>OK, so now openrouteservice has shut down, we need to restart it again with the same <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span> <span class="pre">-d</span></code> command.
+Again you can watch the logs with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span> <span class="pre">ors-app</span></code> and when you see that the profiles have finished loading,
+you can start querying. Though you are loading in the car graphs so they won’t be built again, the walking graphs
+will need to be built so it may take a little time.</p>
+<p>When building has finished, you can make queries against both the car and the walking profile as described in the
+previous section. An example of routing for the walking profile is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;http://localhost:8080/ors/v2/directions/foot-walking/geojson&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json; charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;coordinates&quot;:[[-4.288015,55.872373],[-4.257717,55.859417]],&quot;preference&quot;:&quot;shortest&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>Here, you can see that we have changed the profile in the url from <code class="docutils literal notranslate"><span class="pre">driving-car</span></code> to <code class="docutils literal notranslate"><span class="pre">foot-walking</span></code>.</p>
+</section>
+<section id="let-s-do-some-walkable-routing">
+<h3>7. Let’s do some walkable routing<a class="headerlink" href="#let-s-do-some-walkable-routing" title="Permalink to this heading">#</a></h3>
+<p>So now you know how to setup openrouteservice, how to use different OSM data, and how to enable different profiles.
+The final part of this tutorial is to do some routing which takes into account walkability.</p>
+<p>Within openrouteservice, there are things called “extended storages” which are basically additional attributes that
+are added to the routing graph. Normally, the information stored in the graph itself are just the distance between
+two nodes, and how long it takes to travel that distance. When you do routing that needs to take into account things
+such as walkability or avoiding things such as kerbs over a certain height or crossing country borders, that is where
+extended storages come into play. Some storages allow passing in extra data which are then matched to edges in the
+graph when the graph itself is built, such is the case with walkability. Others (such as the wheelchair extended
+storage) only uses the base data from OSM and act as just storages for this extra information which are then used at
+route generation. In this example, we will make use of a generic extended storage in openrouteservice called the csv
+storage (named so because data is passed to openrouteservice in the form of a csv file). This storage applies
+additional weightings to edges in the graph which then affect how much each edge costs.</p>
+<p>Firstly, lets take a quick look at the structure of a csv file that can be used in the storage:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>osm_id</p></th>
+<th class="head"><p>index_bike</p></th>
+<th class="head"><p>index_walk</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>672899942</p></td>
+<td><p>0.165</p></td>
+<td><p>0.647</p></td>
+</tr>
+<tr class="row-odd"><td><p>334525</p></td>
+<td><p>0.873</p></td>
+<td><p>0.811</p></td>
+</tr>
+</tbody>
+</table>
+<p>In this csv file, there are three columns, one is the OSM id of the way that the information is for, and then the
+other two are values about the walk and bikability.</p>
+<p>There are a few rules that need to be taken into account for the csv file. Firstly, the first column must be the OSM id
+of the way that the value(s) refers to. Secondly, you can have any number of additional columns, but the values need
+to be between 0 and 1, with 0 indicating that the way is completely suitable, and 1 that it is completely unsuitable.</p>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong> Currently, there are some additional restrictions in the csv file that need to be taken into account,
+though they will be eased up in future releases as the feature becomes more stable:</p>
+<ul class="simple">
+<li><p>You cannot include any quotation marks (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>) in the file</p></li>
+<li><p>Any empty cells need to be marked as <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (again without quotation marks) - <code class="docutils literal notranslate"><span class="pre">NULL</span></code> or empty cells are not permitted</p></li>
+</ul>
+</div></blockquote>
+<p>OK, so now you know a little about the csv extended storage, it is time to put it to use. As you should make sure
+that the OSM ids in the csv file correspond with OSM ids of the pbf file that you use to build the graphs, we have
+provided a csv file from NetAScore for Glasgow which map to the OSM pbf file that we used previously. You can get
+the csv file (named <code class="docutils literal notranslate"><span class="pre">netascore_glasgow_converted.csv</span></code> from the same place as the pbf file. Once you have downloaded the
+csv file, move it to the <code class="docutils literal notranslate"><span class="pre">files</span></code> folder of the openrouteservice setup, and delete any folders and data that are in the
+<code class="docutils literal notranslate"><span class="pre">graphs</span></code> folder. Your file structure should not look like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>openrouteservice
+│   docker-compose.yml
+└───config 
+│       ors-config.yml  
+└───elevation_cache
+└───files
+│       glasgow-latest.osm.pbf
+│       netascore_glasgow_converted.csv    
+└───graphs
+└───logs
+</pre></div>
+</div>
+<p>Now that the data is ready, take a look at what the headers of the csv file contain by using the command <code class="docutils literal notranslate"><span class="pre">head</span>&#160; <span class="pre">files/netascore_glasgow_converted.csv</span></code> - you will need to know the column name of the walkability index value for when
+you query to get results. In our case, the column is called <code class="docutils literal notranslate"><span class="pre">index_walk</span></code>.</p>
+<p>To make use of this data in the graph building, you need to modify the <code class="docutils literal notranslate"><span class="pre">ors-config.yml</span></code> file. Change the <code class="docutils literal notranslate"><span class="pre">walking</span></code>
+section under profiles to be the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">walking</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">ext_storages</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">csv</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">filepath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/files/netascore_glasgow_converted.csv</span>
+</pre></div>
+</div>
+<p>Now all you need to do is stop openrouteservice if it is still running (<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">down</span></code>) and then start it up
+again (<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span> <span class="pre">-d</span></code>). Once it has finished building, you will be able to make requests for walking routes
+that take into account the walkability.</p>
+<p>To request a walkable route, you do the same as previously, but in addition to the starting and end coordinates, you
+also pass in some additional parameters. This is where the column name is needed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s1">&#39;http://localhost:8080/ors/v2/directions/foot-walking/geojson&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Content-Type: application/json; charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s1">&#39;Accept: application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;coordinates&quot;:[[-4.3121, 55.8826],[-4.2915, 55.8427]],&quot;instructions&quot;: false, &quot;extra_info&quot;:[&quot;csv&quot;],&quot;options&quot;: {&quot;profile_params&quot;: {&quot;weightings&quot;: {&quot;csv_column&quot;: &quot;index_walk&quot;,&quot;csv_factor&quot;: 1.0}}}}&#39;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong> If you get any errors, make sure that you are using the correct file paths and that you delete the
+graphs folders before restarting the Docker container.</p>
+</div></blockquote>
+<p>The first addition is the <code class="docutils literal notranslate"><span class="pre">&quot;extra_info&quot;:[&quot;csv&quot;]</span></code>. This adds some extra information in the response from
+openrouteservice that shows the values obtained from the csv storage for segments along the route (we will talk
+about that shortly). The part that actually tells openrouteservice to use walkability in routing though is the
+<code class="docutils literal notranslate"><span class="pre">&quot;options&quot;:</span> <span class="pre">{&quot;profile_params&quot;:</span> <span class="pre">{&quot;weightings&quot;:</span> <span class="pre">{&quot;csv_column&quot;:</span> <span class="pre">&quot;index_walk&quot;,&quot;csv_factor&quot;:</span> <span class="pre">1.0}}}}</span></code> part. Here we are
+telling openrouteservice to use the <code class="docutils literal notranslate"><span class="pre">csv_column</span></code> called <code class="docutils literal notranslate"><span class="pre">index_walk</span></code> when calculating a route, and that we should
+apply the maximum effect from it (the <code class="docutils literal notranslate"><span class="pre">1.0</span></code>). This means that when an edge in the graph is evaluated, the base value
+from OSM is taken (distance or travel time), then increased by the full factor of the walk index from the csv (that is
+why 0 in the file is seen as most suitable). In practice, that means if the base weight of the edge was 100, and it
+was from an OSM way that had a walkability index value of 0.8, when we pass 1.0 as the csv_factor the end weight of
+the edge would be 180 (<code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">+</span> <span class="pre">((100</span> <span class="pre">x</span> <span class="pre">0.8)</span> <span class="pre">x</span> <span class="pre">1.0)</span></code>). If we passed in 0.1 as the csv_factor, the end value would be 108
+(<code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">+</span> <span class="pre">((100</span> <span class="pre">x</span> <span class="pre">0.8)</span> <span class="pre">x</span> <span class="pre">0.1)</span></code>). This means that the lower the csv_factor value, the less the walkability factor has an
+effect on the route generated.</p>
+<p>To look at differences between routes generated, you can either save the files as geojson and load them into a
+visualiser, or copy the geojson response body and paste it into a websites such as <a class="reference external" href="https://geojson.io">https://geojson.io</a>. It may be the
+case that the routes are very similar, or even identical, but that does not mean that the walkability isn’t being
+taken into account, it just means that the original route was actually already pretty walkable in comparison to
+alternatives.</p>
+<p>As mentioned, another part of the returned route from the above example is the “extra information”. As we requested
+to receive csv data, alongside the route geometry we get some values stored in a two dimensional array, which looks
+something like the following:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;extras&quot;</span><span class="p">:{</span><span class="nt">&quot;csv&quot;</span><span class="p">:{</span><span class="nt">&quot;values&quot;</span><span class="p">:[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">49</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">33</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">53</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">46</span><span class="p">]]}}}</span>
+</pre></div>
+</div>
+<p>These arrays of three numbers represent sections of the route that have a specific value that was obtained from the
+csv file - in this case the walkability index (when requesting csv extra info, the value returned is for the column
+that was specified as the <code class="docutils literal notranslate"><span class="pre">csv_column</span></code> in the request). In the case of the csv extra info, the value is always from
+0 to 100, and is the original csv file value multiplied by 100. In the above snippet, this means that between the
+first and second vertex of the geojson linestring, there was a walkability value of 49, which would have been 0.49
+in the csv file. Between vertices 2 and 3, the value is 33, and between vertices 3 and 6 ir is 53. Remember that a
+lower value means that a segment is <strong>more</strong> suitable!</p>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this heading">#</a></h2>
+<p>That pretty much covers the basics of setting up openrouteservice on your own system and then querying it to get
+some routing results. At this point, feel free to keep playing around with different settings in the configuration
+file, or even installing openrouteservice through different methods. You can find general information about
+installing on the documentation at <a class="reference external" href="https://giscience.github.io/openrouteservice/run-instance/">https://giscience.github.io/openrouteservice/run-instance/</a>. There you can also
+find out about what different configuration parameters do. One good thing to do would be to use the above steps to
+activate the bike profile with the csv extended storage so that you can play around with the bikability index
+routing. The steps would be pretty much the same, the only difference would be that you would alter the <code class="docutils literal notranslate"><span class="pre">bike-regular</span></code>
+area in the <code class="docutils literal notranslate"><span class="pre">ors-config.yml</span></code> file rather than the <code class="docutils literal notranslate"><span class="pre">walking</span></code> section, and then use <code class="docutils literal notranslate"><span class="pre">index_bike</span></code> rather than
+<code class="docutils literal notranslate"><span class="pre">index_walk</span></code> in your
+requests:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">bike-regular</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">         </span><span class="nt">ext_storages</span><span class="p">:</span>
+<span class="w">           </span><span class="nt">csv</span><span class="p">:</span>
+<span class="w">             </span><span class="nt">filepath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/ors/files/netascore_glasgow_converted.csv</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="netascore.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Installing and running NetAScore</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="qgis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Visualisation in QGIS</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-prerequisites">Installation &amp; Prerequisites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-resources">1. Getting the resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-file-structure">2. Setting up the file structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">3. Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-instance">4. Starting your first instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-your-instance">5. Querying your instance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-different-profiles">6. Using different profiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-do-some-walkable-routing">7. Let’s do some walkable routing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By HeiGIT gGmbH; GIScience Research Group, Heidelberg University; Mobility Lab Research Group, Department of Geoinformatics, University of Salzburg
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
